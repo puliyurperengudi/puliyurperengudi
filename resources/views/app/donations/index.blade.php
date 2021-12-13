@@ -150,6 +150,11 @@
                                         </button>
                                     </form>
                                     @endcan
+                                    <a href="{{ route('donations.invoice-download', $donation) }}">
+                                        <button type="button" class="btn btn-light">
+                                            <i class="icon ion-md-download"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </td>
                         </tr>

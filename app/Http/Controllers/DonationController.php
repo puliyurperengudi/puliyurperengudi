@@ -131,4 +131,16 @@ class DonationController extends Controller
             ->route('donations.index')
             ->withSuccess(__('crud.common.removed'));
     }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Donation $donation
+     * @return \Illuminate\Http\Response
+     */
+    public function downloadInvoice(Request $request, Donation $donation)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('donations.invoice');
+        return $pdf->stream();
+    }
 }

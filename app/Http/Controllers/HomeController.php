@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donation;
+use App\Models\Expense;
+use App\Models\TaxPayers;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalTax = TaxPayers::sum('paid_amount');
+        $totalDonation = Donation::sum('last_paid_amount');
+        $totalExpense = Expense::sum('amount');
+        return view('home', compact('totalTax', 'totalDonation', 'totalExpense'));
     }
 }

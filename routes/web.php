@@ -74,8 +74,16 @@ Route::prefix('/')
             TaxPayersController::class,
             'destroy',
         ])->name('all-tax-payers.destroy');
+        Route::get('all-tax-payers-invoice-download/{taxPayers}', [
+            TaxPayersController::class,
+            'downloadInvoice',
+        ])->name('all-tax-payers.invoice-download');
 
         Route::resource('donations', DonationController::class);
+        Route::get('donations-invoice-download/{donation}', [
+            TaxPayersController::class,
+            'downloadInvoice',
+        ])->name('donations.invoice-download');
         Route::resource('expense-types', ExpenseTypeController::class);
         Route::resource('expenses', ExpenseController::class);
     });

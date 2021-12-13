@@ -130,4 +130,16 @@ class TaxPayersController extends Controller
             ->route('all-tax-payers.index')
             ->withSuccess(__('crud.common.removed'));
     }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\TaxPayers $taxPayers
+     * @return \Illuminate\Http\Response
+     */
+    public function downloadInvoice(Request $request, TaxPayers $taxPayers)
+    {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadView('app.all_tax_payers.invoice');
+        return $pdf->stream();
+    }
 }
