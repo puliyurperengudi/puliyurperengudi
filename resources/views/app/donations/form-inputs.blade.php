@@ -71,7 +71,6 @@
             name="last_paid_amount"
             label="Last Paid Amount"
             value="{{ old('last_paid_amount', ($editing ? $donation->last_paid_amount : '')) }}"
-            max="255"
             step="0.01"
             placeholder="Last Paid Amount"
             required
@@ -83,7 +82,6 @@
             name="last_paid_to"
             label="Last Paid To"
             value="{{ old('last_paid_to', ($editing ? $donation->last_paid_to : '')) }}"
-            max="255"
             step="0.01"
             placeholder="Last Paid To"
             required

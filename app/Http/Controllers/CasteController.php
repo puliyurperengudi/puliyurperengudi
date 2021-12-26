@@ -50,7 +50,7 @@ class CasteController extends Controller
         $caste = Caste::create($validated);
 
         return redirect()
-            ->route('castes.edit', $caste)
+            ->route('castes.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -92,7 +92,7 @@ class CasteController extends Controller
         $caste->update($validated);
 
         return redirect()
-            ->route('castes.edit', $caste)
+            ->route('castes.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

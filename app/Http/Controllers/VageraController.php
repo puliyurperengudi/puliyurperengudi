@@ -53,7 +53,7 @@ class VageraController extends Controller
         $vagera = Vagera::create($validated);
 
         return redirect()
-            ->route('vageras.edit', $vagera)
+            ->route('vageras.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -97,7 +97,7 @@ class VageraController extends Controller
         $vagera->update($validated);
 
         return redirect()
-            ->route('vageras.edit', $vagera)
+            ->route('vageras.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

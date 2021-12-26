@@ -60,7 +60,7 @@ class TempleUserController extends Controller
         $templeUser = TempleUser::create($validated);
 
         return redirect()
-            ->route('temple-users.edit', $templeUser)
+            ->route('temple-users.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -111,7 +111,7 @@ class TempleUserController extends Controller
         $templeUser->update($validated);
 
         return redirect()
-            ->route('temple-users.edit', $templeUser)
+            ->route('temple-users.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

@@ -50,7 +50,7 @@ class TaxListController extends Controller
         $taxList = TaxList::create($validated);
 
         return redirect()
-            ->route('tax-lists.edit', $taxList)
+            ->route('tax-lists.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -92,7 +92,7 @@ class TaxListController extends Controller
         $taxList->update($validated);
 
         return redirect()
-            ->route('tax-lists.edit', $taxList)
+            ->route('tax-lists.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

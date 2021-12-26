@@ -37,7 +37,6 @@
             name="expense_date"
             label="Expense Date"
             value="{{ old('expense_date', ($editing ? optional($expense->expense_date)->format('Y-m-d') : '')) }}"
-            max="255"
             required
         ></x-inputs.date>
     </x-inputs.group>
@@ -69,7 +68,6 @@
             name="amount"
             label="Amount"
             value="{{ old('amount', ($editing ? $expense->amount : '')) }}"
-            max="255"
             step="0.01"
             placeholder="Amount"
             required

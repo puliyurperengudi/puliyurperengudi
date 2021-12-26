@@ -53,7 +53,7 @@ class ExpenseTypeController extends Controller
         $expenseType = ExpenseType::create($validated);
 
         return redirect()
-            ->route('expense-types.edit', $expenseType)
+            ->route('expense-types.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -97,7 +97,7 @@ class ExpenseTypeController extends Controller
         $expenseType->update($validated);
 
         return redirect()
-            ->route('expense-types.edit', $expenseType)
+            ->route('expense-types.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

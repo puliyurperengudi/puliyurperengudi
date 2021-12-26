@@ -55,12 +55,12 @@ class PermissionController extends Controller
         ]);
 
         $permission = Permission::create($data);
-        
+
         $roles = Role::find($request->roles);
         $permission->syncRoles($roles);
 
         return redirect()
-            ->route('permissions.edit', $permission->id)
+            ->route('permissions.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -111,12 +111,12 @@ class PermissionController extends Controller
         ]);
 
         $permission->update($data);
-        
+
         $roles = Role::find($request->roles);
         $permission->syncRoles($roles);
 
         return redirect()
-            ->route('permissions.edit', $permission->id)
+            ->route('permissions.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

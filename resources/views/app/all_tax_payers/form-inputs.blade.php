@@ -26,7 +26,6 @@
             name="paid_amount"
             label="Paid Amount"
             value="{{ old('paid_amount', ($editing ? $taxPayers->paid_amount : '')) }}"
-            max="255"
             step="0.01"
             placeholder="Paid Amount"
             required
@@ -38,7 +37,6 @@
             name="paid_date"
             label="Paid Date"
             value="{{ old('paid_date', ($editing ? optional($taxPayers->paid_date)->format('Y-m-d') : '')) }}"
-            max="255"
             required
         ></x-inputs.date>
     </x-inputs.group>

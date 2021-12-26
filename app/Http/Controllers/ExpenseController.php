@@ -55,7 +55,7 @@ class ExpenseController extends Controller
         $expense = Expense::create($validated);
 
         return redirect()
-            ->route('expenses.edit', $expense)
+            ->route('expenses.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -103,7 +103,7 @@ class ExpenseController extends Controller
         $expense->update($validated);
 
         return redirect()
-            ->route('expenses.edit', $expense)
+            ->route('expenses.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

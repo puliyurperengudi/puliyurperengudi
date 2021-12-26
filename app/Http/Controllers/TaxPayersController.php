@@ -61,7 +61,7 @@ class TaxPayersController extends Controller
         $taxPayers = TaxPayers::create($validated);
 
         return redirect()
-            ->route('all-tax-payers.edit', $taxPayers)
+            ->route('all-tax-payers.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -111,7 +111,7 @@ class TaxPayersController extends Controller
         $taxPayers->update($validated);
 
         return redirect()
-            ->route('all-tax-payers.edit', $taxPayers)
+            ->route('all-tax-payers.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

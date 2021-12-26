@@ -53,7 +53,7 @@ class KootamController extends Controller
         $kootam = Kootam::create($validated);
 
         return redirect()
-            ->route('kootams.edit', $kootam)
+            ->route('kootams.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -97,7 +97,7 @@ class KootamController extends Controller
         $kootam->update($validated);
 
         return redirect()
-            ->route('kootams.edit', $kootam)
+            ->route('kootams.index')
             ->withSuccess(__('crud.common.saved'));
     }
 

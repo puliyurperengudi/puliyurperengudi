@@ -20,8 +20,8 @@ class CreateDonationsTable extends Migration
             $table->string('father_name');
             $table->text('address');
             $table->string('receipt_no');
-            $table->decimal('last_paid_amount');
-            $table->decimal('last_paid_to');
+            $table->decimal('last_paid_amount')->nullable();
+            $table->decimal('last_paid_to')->nullable();
             $table->unsignedBigInteger('tax_list_id');
             $table->unsignedBigInteger('kootam_id');
             $table->unsignedBigInteger('vagera_id');

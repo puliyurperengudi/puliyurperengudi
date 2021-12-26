@@ -17,7 +17,6 @@
             name="amount"
             label="Amount"
             value="{{ old('amount', ($editing ? $taxList->amount : '')) }}"
-            max="255"
             step="0.01"
             placeholder="Amount"
             required
