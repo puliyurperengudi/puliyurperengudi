@@ -56,6 +56,10 @@
                     <h5>@lang('crud.donations.inputs.caste_id')</h5>
                     <span>{{ optional($donation->caste)->name ?? '-' }}</span>
                 </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.donations.inputs.caste_id')</h5>
+                    <span>{{ optional($donation->remarks) ?? '-' }}</span>
+                </div>
             </div>
 
             <div class="mt-4">

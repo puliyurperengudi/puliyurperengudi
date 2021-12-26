@@ -22,6 +22,7 @@ class CreateTaxPayersTable extends Migration
             $table->date('paid_date');
             $table->string('paid_to')->nullable();
             $table->string('receipt_no')->nullable();
+            $table->string('remarks')->nullable();
 
             $table->timestamps();
         });

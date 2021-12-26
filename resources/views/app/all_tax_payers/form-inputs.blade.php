@@ -62,4 +62,14 @@
             required
         ></x-inputs.text>
     </x-inputs.group>
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="remarks"
+            label="Remarks"
+            value="{{ old('remarks', ($editing ? $taxPayers->remarks : '')) }}"
+            maxlength="255"
+            placeholder="Remarks"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
 </div>

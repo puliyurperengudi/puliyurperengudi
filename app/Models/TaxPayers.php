@@ -19,6 +19,7 @@ class TaxPayers extends Model
         'paid_date',
         'paid_to',
         'receipt_no',
+        'remarks'
     ];
 
     protected $searchableFields = ['*'];

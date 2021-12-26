@@ -34,6 +34,7 @@ class DonationStoreRequest extends FormRequest
             'kootam_id' => ['required', 'exists:kootams,id'],
             'vagera_id' => ['required', 'exists:vageras,id'],
             'caste_id' => ['required', 'exists:castes,id'],
+            'remarks' => ['max:255', 'string'],
         ];
     }
 }

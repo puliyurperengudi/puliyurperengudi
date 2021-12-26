@@ -78,14 +78,14 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.number
+        <x-inputs.text
             name="last_paid_to"
             label="Last Paid To"
             value="{{ old('last_paid_to', ($editing ? $donation->last_paid_to : '')) }}"
             step="0.01"
             placeholder="Last Paid To"
             required
-        ></x-inputs.number>
+        ></x-inputs.text>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
@@ -116,5 +116,15 @@
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
+    </x-inputs.group>
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="remarks"
+            label="Remarks"
+            value="{{ old('remarks', ($editing ? $donation->remarks : '')) }}"
+            maxlength="255"
+            placeholder="Remarks"
+            required
+        ></x-inputs.text>
     </x-inputs.group>
 </div>

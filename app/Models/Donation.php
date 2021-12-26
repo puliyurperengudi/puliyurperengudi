@@ -23,6 +23,7 @@ class Donation extends Model
         'kootam_id',
         'vagera_id',
         'caste_id',
+        'remarks'
     ];
 
     protected $searchableFields = ['*'];
