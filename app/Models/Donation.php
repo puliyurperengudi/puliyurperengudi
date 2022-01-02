@@ -18,7 +18,6 @@ class Donation extends Model
         'address',
         'receipt_no',
         'last_paid_amount',
-        'last_paid_to',
         'tax_list_id',
         'kootam_id',
         'vagera_id',

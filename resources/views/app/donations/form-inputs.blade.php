@@ -69,23 +69,12 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
             name="last_paid_amount"
-            label="Last Paid Amount"
+            label="Paid Amount"
             value="{{ old('last_paid_amount', ($editing ? $donation->last_paid_amount : '')) }}"
             step="0.01"
-            placeholder="Last Paid Amount"
+            placeholder="Paid Amount"
             required
         ></x-inputs.number>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="last_paid_to"
-            label="Last Paid To"
-            value="{{ old('last_paid_to', ($editing ? $donation->last_paid_to : '')) }}"
-            step="0.01"
-            placeholder="Last Paid To"
-            required
-        ></x-inputs.text>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">

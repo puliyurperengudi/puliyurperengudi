@@ -15,7 +15,7 @@
         <div class="col-md-3">
             <div class="info-box bg-blue">
                 <div class="info-box-content text-center">
-                    <span class="info-box-text">Total Tax Collected</span>
+                    <span class="info-box-text">Total Tax Collected / மொத்த வரி வசூல்</span>
                     <span class="info-box-number">₹{{ number_format($totalTax, 2) }}</span>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="col-md-3">
             <div class="info-box bg-red">
                 <div class="info-box-content text-center">
-                    <span class="info-box-text">Total Donation Collected</span>
+                    <span class="info-box-text">Total Donation / மொத்த நன்கொடை வசூல்</span>
                     <span class="info-box-number">₹{{ number_format($totalDonation, 2) }}</span>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div class="col-md-3">
             <div class="info-box bg-green">
                 <div class="info-box-content text-center">
-                    <span class="info-box-text">Total Expenses</span>
+                    <span class="info-box-text">Total Expenses / மொத்த செலவுகள்</span>
                     <span class="info-box-number">₹{{ number_format($totalExpense, 2) }}</span>
                 </div>
             </div>
@@ -39,7 +39,7 @@
         <div class="col-md-3">
             <div class="info-box bg-yellow">
                 <div class="info-box-content text-center">
-                    <span class="info-box-text">Available Balance</span>
+                    <span class="info-box-text">Total Balance / மொத்த சமநிலை</span>
                     <span class="info-box-number">₹{{ number_format((($totalTax + $totalDonation) - $totalExpense), 2) }}</span>
                 </div>
             </div>

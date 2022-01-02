@@ -22,7 +22,7 @@ return [
 
     'users' => [
         'name' => 'Users',
-        'index_title' => 'Users List',
+        'index_title' => 'Users / பணியாளர்',
         'new_title' => 'New User',
         'create_title' => 'Create User',
         'edit_title' => 'Edit User',
@@ -36,7 +36,7 @@ return [
 
     'castes' => [
         'name' => 'Castes',
-        'index_title' => 'Castes List',
+        'index_title' => 'Castes List / சாதிகள் பட்டியல்',
         'new_title' => 'New Caste',
         'create_title' => 'Create Caste',
         'edit_title' => 'Edit Caste',
@@ -48,7 +48,7 @@ return [
 
     'kootams' => [
         'name' => 'Kootams',
-        'index_title' => 'Kootams List',
+        'index_title' => 'Kootams List / குலம் பட்டியல்',
         'new_title' => 'New Kootam',
         'create_title' => 'Create Kootam',
         'edit_title' => 'Edit Kootam',
@@ -61,7 +61,7 @@ return [
 
     'vageras' => [
         'name' => 'Vageras',
-        'index_title' => 'Vageras List',
+        'index_title' => 'Vagayara List / வகையாரா பட்டியல்',
         'new_title' => 'New Vagera',
         'create_title' => 'Create Vagera',
         'edit_title' => 'Edit Vagera',
@@ -74,7 +74,7 @@ return [
 
     'temple_users' => [
         'name' => 'Temple Users',
-        'index_title' => 'TempleUsers List',
+        'index_title' => 'Temple Users / வரியாலர்கள்',
         'new_title' => 'New Temple user',
         'create_title' => 'Create TempleUser',
         'edit_title' => 'Edit TempleUser',
@@ -92,7 +92,7 @@ return [
 
     'tax_lists' => [
         'name' => 'Tax Lists',
-        'index_title' => 'TaxLists List',
+        'index_title' => 'Tax List / வரி பட்டியல்',
         'new_title' => 'New Tax list',
         'create_title' => 'Create TaxList',
         'edit_title' => 'Edit TaxList',
@@ -105,7 +105,7 @@ return [
 
     'all_tax_payers' => [
         'name' => 'All Tax Payers',
-        'index_title' => 'AllTaxPayers List',
+        'index_title' => 'Pay tax / வரி செலுத்துமிடம்',
         'new_title' => 'New Tax payers',
         'create_title' => 'Create TaxPayers',
         'edit_title' => 'Edit TaxPayers',
@@ -122,7 +122,7 @@ return [
 
     'donations' => [
         'name' => 'Donations',
-        'index_title' => 'Donations List',
+        'index_title' => 'Donations Lists / நன்கொடை பட்டியல்',
         'new_title' => 'New Donation',
         'create_title' => 'Create Donation',
         'edit_title' => 'Edit Donation',
@@ -144,7 +144,7 @@ return [
 
     'expense_types' => [
         'name' => 'Expense Types',
-        'index_title' => 'ExpenseTypes List',
+        'index_title' => 'Expenses List / செலவுகள் பட்டியல்',
         'new_title' => 'New Expense type',
         'create_title' => 'Create ExpenseType',
         'edit_title' => 'Edit ExpenseType',
@@ -156,7 +156,7 @@ return [
 
     'expenses' => [
         'name' => 'Expenses',
-        'index_title' => 'Expenses List',
+        'index_title' => 'Expenses List / செலவு வகைகளின் பட்டியல்',
         'new_title' => 'New Expense',
         'create_title' => 'Create Expense',
         'edit_title' => 'Edit Expense',

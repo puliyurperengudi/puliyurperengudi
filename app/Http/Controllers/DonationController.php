@@ -62,7 +62,7 @@ class DonationController extends Controller
         $donation = Donation::create($validated);
 
         return redirect()
-            ->route('donations.index')
+            ->route('donations.index', $donation)
             ->withSuccess(__('crud.common.created'));
     }
 

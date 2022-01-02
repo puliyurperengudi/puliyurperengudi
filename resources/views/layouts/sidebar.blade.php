@@ -18,16 +18,47 @@
                     <a href="{{ route('home') }}" class="nav-link">
                         <i class="nav-icon icon ion-md-pulse"></i>
                         <p>
-                            Dashboard
+                            Home / வீடு
                         </p>
                     </a>
                 </li>
-
+                    @can('view-any', App\Models\TaxList::class)
+                        <li class="nav-item">
+                            <a href="{{ route('tax-lists.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Tax List / வரி பட்டியல்</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('view-any', App\Models\TaxPayers::class)
+                        <li class="nav-item">
+                            <a href="{{ route('all-tax-payers.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Pay tax / வரி செலுத்துமிடம் </p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('view-any', App\Models\Donation::class)
+                        <li class="nav-item">
+                            <a href="{{ route('donations.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Donations / நன்கொடை</p>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('view-any', App\Models\Expense::class)
+                        <li class="nav-item">
+                            <a href="{{ route('expenses.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Expenses List / செலவுகள் பட்டியல்</p>
+                            </a>
+                        </li>
+                    @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon icon ion-md-apps"></i>
                         <p>
-                            Apps
+                            Masters
                             <i class="nav-icon right icon ion-md-arrow-round-back"></i>
                         </p>
                     </a>
@@ -36,7 +67,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('users.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Users</p>
+                                    <p>Users / பணியாளர்</p>
                                 </a>
                             </li>
                             @endcan
@@ -44,7 +75,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('castes.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Castes</p>
+                                    <p>Castes / சாதிகள்</p>
                                 </a>
                             </li>
                             @endcan
@@ -52,7 +83,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('kootams.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Kootams</p>
+                                    <p>Kootams / குலம்</p>
                                 </a>
                             </li>
                             @endcan
@@ -60,7 +91,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('vageras.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Vageras</p>
+                                    <p>Vageras / வகையாரா</p>
                                 </a>
                             </li>
                             @endcan
@@ -68,31 +99,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('temple-users.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Temple Users</p>
-                                </a>
-                            </li>
-                            @endcan
-                            @can('view-any', App\Models\TaxList::class)
-                            <li class="nav-item">
-                                <a href="{{ route('tax-lists.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Tax Lists</p>
-                                </a>
-                            </li>
-                            @endcan
-                            @can('view-any', App\Models\TaxPayers::class)
-                            <li class="nav-item">
-                                <a href="{{ route('all-tax-payers.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>All Tax Payers</p>
-                                </a>
-                            </li>
-                            @endcan
-                            @can('view-any', App\Models\Donation::class)
-                            <li class="nav-item">
-                                <a href="{{ route('donations.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Donations</p>
+                                    <p>Temple Users / வரியாலர்கள்</p>
                                 </a>
                             </li>
                             @endcan
@@ -100,15 +107,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('expense-types.index') }}" class="nav-link">
                                     <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Expense Types</p>
-                                </a>
-                            </li>
-                            @endcan
-                            @can('view-any', App\Models\Expense::class)
-                            <li class="nav-item">
-                                <a href="{{ route('expenses.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Expenses</p>
+                                    <p>Expense Types / செலவு வகைகள்</p>
                                 </a>
                             </li>
                             @endcan
