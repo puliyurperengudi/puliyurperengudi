@@ -26,9 +26,7 @@ use App\Http\Controllers\ExpenseTypeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 Auth::routes();
 
