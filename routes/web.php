@@ -26,11 +26,9 @@ use App\Http\Controllers\ExpenseTypeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::prefix('/')
     ->middleware('auth')
