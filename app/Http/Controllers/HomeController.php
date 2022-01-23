@@ -28,13 +28,11 @@ class HomeController extends Controller
     public function index()
     {
         $taxListFilter = request('tax-list');
-        info(['$taxListFilter' => $taxListFilter]);
         $taxLists = TaxList::latest()->get();
         if ($taxListFilter == 'ALL') {
             $taxListId = null;
         } else {
             if (is_numeric($taxListFilter)) {
-                info("in");
                 $taxListId = $taxLists->where('id', $taxListFilter)->first()->id ?? null;
             } else {
                 $taxListId = $taxLists->first()->id ?? null;
