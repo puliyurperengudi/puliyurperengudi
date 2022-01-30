@@ -39,7 +39,7 @@ class TaxPayersController extends Controller
     {
         $this->authorize('create', TaxPayers::class);
 
-        $templeUsers = TempleUser::pluck('name', 'id');
+        $templeUsers = TempleUser::all()->groupBy('id');
         $taxLists = TaxList::pluck('name', 'id');
 
         return view(
@@ -141,5 +141,22 @@ class TaxPayersController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadView('app.all_tax_payers.invoice');
         return $pdf->stream();
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPendingTaxDetails(Request $request)
+    {
+        $templeUserId = $request->temple_user_id;
+        $taxListId = $request->tax_list_id;
+        if ($templeUserId && $taxListId) {
+            $totalAmount = TaxList::find($taxListId)->amount ?? 0;
+            $alreadyPaidAmount = TaxPayers::where('temple_user_id', $templeUserId)->where('tax_list_id', $taxListId)->sum('paid_amount');
+            $totalAmount -= $alreadyPaidAmount;
+            return response()->json(['status' => 'success', 'amount' => $totalAmount]);
+        }
+        return response()->json(['status' => 'error', 'amount' => 0]);
     }
 }

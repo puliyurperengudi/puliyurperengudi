@@ -80,6 +80,10 @@ Route::prefix('/')
             TaxPayersController::class,
             'downloadInvoice',
         ])->name('donations.invoice-download');
+        Route::post('pending-tax-details', [
+            TaxPayersController::class,
+            'getPendingTaxDetails',
+        ])->name('donations.pending-tax');
         Route::resource('expense-types', ExpenseTypeController::class);
         Route::resource('expenses', ExpenseController::class);
     });

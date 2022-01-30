@@ -30,7 +30,6 @@ class DonationStoreRequest extends FormRequest
             'address' => ['required', 'max:255', 'string'],
             'receipt_no' => ['required', 'max:255', 'string'],
             'last_paid_amount' => ['required', 'numeric'],
-            'last_paid_to' => ['required', 'numeric'],
             'kootam_id' => ['required', 'exists:kootams,id'],
             'vagera_id' => ['required', 'exists:vageras,id'],
             'caste_id' => ['required', 'exists:castes,id'],

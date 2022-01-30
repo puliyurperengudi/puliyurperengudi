@@ -2,17 +2,27 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="temple_user_id" label="Temple User" required>
+        <x-inputs.select name="temple_user_id" label="Temple User" required id="temple_user_id">
             @php $selected = old('temple_user_id', ($editing ? $taxPayers->temple_user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Temple User</option>
-            @foreach($templeUsers as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @foreach($templeUsers as $id => $templeUser)
+            <option value="{{ $templeUser->first()->id }}" {{ $selected == $templeUser->first()->id ? 'selected' : '' }} >{{ $templeUser->first()->name }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
 
+    <div class="card" style="width: 100%; padding-left: 20px; padding-right: 20px" id="user-details">
+        <div class="card-body">
+            <p><strong>Name : </strong><span id="user-name"></span></p>
+            <p><strong>Father Name : </strong><span id="father-name"></span></p>
+            <p><strong>Mobile Number : </strong><span id="mobile-number"></span></p>
+            <p><strong>Address : </strong><span id="address"></span></p>
+            <p><strong>Pending Amount : </strong><span id="pending-amount">-</span></p>
+        </div>
+    </div>
+
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="tax_list_id" label="Tax List" required>
+        <x-inputs.select name="tax_list_id" label="Tax List" required id="tax_list_id">
             @php $selected = old('tax_list_id', ($editing ? $taxPayers->tax_list_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Tax List</option>
             @foreach($taxLists as $value => $label)
@@ -73,3 +83,44 @@
         ></x-inputs.text>
     </x-inputs.group>
 </div>
+
+<script>
+    var templeUsers = @json($templeUsers);
+    $("#user-details").hide();
+
+    $('#temple_user_id').change(function() {
+        var selectedUser = templeUsers[$(this).val()][0];
+        $("#user-name").html(selectedUser.name);
+        $("#father-name").html(selectedUser.father_name);
+        $("#mobile-number").html(selectedUser.mobile_number);
+        $("#address").html(selectedUser.address);
+        getTaxDetails();
+        $("#user-details").show();
+    });
+
+    $('#tax_list_id').change(function() {
+        getTaxDetails();
+    });
+
+    function getTaxDetails() {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('donations.pending-tax') }}',
+            data: {
+                temple_user_id: $("#temple_user_id").val(),
+                tax_list_id: $("#tax_list_id").val(),
+            },
+            success: function (msg) {
+                if (msg.status == "success") {
+                    $("#pending-amount").html("Rs." + msg.amount);
+                } else {
+                    $("#pending-amount").html('-');
+                }
+            },
+            error: function (error) {
+                console.log(error);
+                alert("Internal Error");
+            }
+        });
+    }
+</script>
