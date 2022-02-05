@@ -22,16 +22,16 @@ class DatabaseSeeder extends Seeder
             ]);
         $this->call(PermissionsSeeder::class);
 
-        $this->call(CasteSeeder::class);
-        $this->call(DonationSeeder::class);
-        $this->call(ExpenseSeeder::class);
-        $this->call(ExpenseTypeSeeder::class);
-        $this->call(KootamSeeder::class);
-        $this->call(TaxListSeeder::class);
-        $this->call(TaxPayersSeeder::class);
-        $this->call(TaxPaymentDetailsSeeder::class);
-        $this->call(TempleUserSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(VageraSeeder::class);
+//        $this->call(CasteSeeder::class);
+//        $this->call(DonationSeeder::class);
+//        $this->call(ExpenseSeeder::class);
+//        $this->call(ExpenseTypeSeeder::class);
+//        $this->call(KootamSeeder::class);
+//        $this->call(TaxListSeeder::class);
+//        $this->call(TaxPayersSeeder::class);
+//        $this->call(TaxPaymentDetailsSeeder::class);
+//        $this->call(TempleUserSeeder::class);
+//        $this->call(UserSeeder::class);
+//        $this->call(VageraSeeder::class);
     }
 }
