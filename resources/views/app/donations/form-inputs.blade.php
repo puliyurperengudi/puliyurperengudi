@@ -47,7 +47,7 @@
                     value="{{ old('name') }}"
                     maxlength="255"
                     placeholder="Name"
-                    required
+                    class="name-input"
                 ></x-inputs.text>
             </x-inputs.group>
 
@@ -58,7 +58,7 @@
                     value="{{ old('mobile_number') }}"
                     maxlength="255"
                     placeholder="Mobile Number"
-                    required
+                    class="mobile-number-input"
                 ></x-inputs.text>
             </x-inputs.group>
 
@@ -69,7 +69,7 @@
                     value="{{ old('father_name') }}"
                     maxlength="255"
                     placeholder="Father Name"
-                    required
+                    class="father-name-input"
                 ></x-inputs.text>
             </x-inputs.group>
 
@@ -78,7 +78,7 @@
                     name="address"
                     label="Address"
                     maxlength="255"
-                    required
+                    class="address-input"
                 >{{ old('address', ($editing ? $donation->address : ''))
                 }}</x-inputs.textarea
                 >
@@ -164,9 +164,17 @@
         if ($('#user-type').val() == "existing-user") {
             $('#new-user-div').hide();
             $('#existing-user-div').show();
+            $('#name-input').attr('required', false);
+            $('#mobile-number-input').attr('required', false);
+            $('#father-name-input').attr('required', false);
+            $('#address-input').attr('required', false);
         } else {
             $('#existing-user-div').hide();
             $('#new-user-div').show();
+            $('#name-input').attr('required', true);
+            $('#mobile-number-input').attr('required', true);
+            $('#father-name-input').attr('required', true);
+            $('#address-input').attr('required', true);
         }
     }
 </script>
