@@ -11,7 +11,7 @@
                     </span>
                     <span class="float-right">
                         <label for="tax-list" style="padding-right: 5px">Tax List </label>
-                        <select name="tax_list" id="tax-list">
+                        <select name="tax_list" id="tax-list" class="select2">
                             <option value="ALL" @if(!$taxListId) selected @endif>All</option>
                           @foreach($taxLists as $taxList)
                                 <option value="{{ $taxList->id }}" @if($taxListId == $taxList->id) selected @endif>{{ $taxList->name }}</option>

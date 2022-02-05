@@ -14,7 +14,6 @@ class AlterDonationsTableAddColumns extends Migration
     public function up()
     {
         Schema::table('donations', function (Blueprint $table) {
-//            $table->string('remarks')->after('caste_id');
             $table->string('vagera')->after('kootam_id');
             $table->dropForeign(['vagera_id']);
             $table->unsignedBigInteger('temple_user_id');
@@ -31,7 +30,6 @@ class AlterDonationsTableAddColumns extends Migration
     public function down()
     {
         Schema::table('donations', function (Blueprint $table) {
-//            $table->dropColumn(['remarks']);
             $table->dropForeign(['temple_user_id']);
             $table->dropColumn(['temple_user_id']);
         });
