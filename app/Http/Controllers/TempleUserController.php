@@ -38,12 +38,11 @@ class TempleUserController extends Controller
         $this->authorize('create', TempleUser::class);
 
         $kootams = Kootam::pluck('name', 'id');
-        $vageras = Vagera::pluck('name', 'id');
         $castes = Caste::pluck('name', 'id');
 
         return view(
             'app.temple_users.create',
-            compact('kootams', 'vageras', 'castes')
+            compact('kootams','castes')
         );
     }
 

@@ -91,10 +91,10 @@
                             <td>
                                 {{ optional($donation->taxList)->name ?? '-' }}
                             </td>
-                            <td>{{ $donation->name ?? '-' }}</td>
-                            <td>{{ $donation->mobile_number ?? '-' }}</td>
-                            <td>{{ $donation->father_name ?? '-' }}</td>
-                            <td>{{ $donation->address ?? '-' }}</td>
+                            <td>{{ optional($donation->templeUser)->name ?? '-' }}</td>
+                            <td>{{ optional($donation->templeUser)->mobile_number ?? '-' }}</td>
+                            <td>{{ optional($donation->templeUser)->father_name ?? '-' }}</td>
+                            <td>{{ optional($donation->templeUser)->address ?? '-' }}</td>
                             <td>{{ $donation->receipt_no ?? '-' }}</td>
                             <td>{{ $donation->last_paid_amount ?? '-' }}</td>
                             <td>{{ $donation->last_paid_to ?? '-' }}</td>
@@ -102,7 +102,7 @@
                                 {{ optional($donation->kootam)->name ?? '-' }}
                             </td>
                             <td>
-                                {{ optional($donation->vagera)->name ?? '-' }}
+                                {{ $donation->vagera ?: '-' }}
                             </td>
                             <td>
                                 {{ optional($donation->caste)->name ?? '-' }}

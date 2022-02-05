@@ -17,7 +17,7 @@ class TempleUser extends Model
         'address',
         'mobile_number',
         'kootam_id',
-        'vagera_id',
+        'vagera',
         'caste_id',
     ];
 

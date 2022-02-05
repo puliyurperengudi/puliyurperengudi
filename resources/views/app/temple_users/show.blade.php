@@ -35,9 +35,9 @@
                     >
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.temple_users.inputs.vagera_id')</h5>
+                    <h5>@lang('crud.temple_users.inputs.vagera')</h5>
                     <span
-                        >{{ optional($templeUser->vagera)->name ?? '-' }}</span
+                        >{{ $templeUser->vagera ?: '-' }}</span
                     >
                 </div>
                 <div class="mb-4">

@@ -65,7 +65,7 @@
                                 @lang('crud.temple_users.inputs.kootam_id')
                             </th>
                             <th class="text-left">
-                                @lang('crud.temple_users.inputs.vagera_id')
+                                @lang('crud.temple_users.inputs.vagera')
                             </th>
                             <th class="text-left">
                                 @lang('crud.temple_users.inputs.caste_id')
@@ -86,7 +86,7 @@
                                 {{ optional($templeUser->kootam)->name ?? '-' }}
                             </td>
                             <td>
-                                {{ optional($templeUser->vagera)->name ?? '-' }}
+                                {{ $templeUser->vagera ?: '-' }}
                             </td>
                             <td>
                                 {{ optional($templeUser->caste)->name ?? '-' }}

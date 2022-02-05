@@ -12,17 +12,14 @@ class Donation extends Model
     use Searchable;
 
     protected $fillable = [
-        'name',
-        'mobile_number',
-        'father_name',
-        'address',
         'receipt_no',
         'last_paid_amount',
         'tax_list_id',
         'kootam_id',
-        'vagera_id',
+        'vagera',
         'caste_id',
-        'remarks'
+        'remarks',
+        'temple_user_id'
     ];
 
     protected $searchableFields = ['*'];
@@ -45,5 +42,10 @@ class Donation extends Model
     public function caste()
     {
         return $this->belongsTo(Caste::class);
+    }
+
+    public function templeUser()
+    {
+        return $this->belongsTo(TempleUser::class);
     }
 }

@@ -28,8 +28,8 @@ class TempleUserUpdateRequest extends FormRequest
             'address' => ['required', 'max:255', 'string'],
             'mobile_number' => ['required', 'max:255', 'string'],
             'kootam_id' => ['required', 'exists:kootams,id'],
-            'vagera_id' => ['required', 'exists:vageras,id'],
             'caste_id' => ['required', 'exists:castes,id'],
+            'vagera' => ['max:255', 'string'],
         ];
     }
 }

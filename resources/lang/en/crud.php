@@ -85,7 +85,7 @@ return [
             'address' => 'Address',
             'mobile_number' => 'Mobile Number',
             'kootam_id' => 'Kootam',
-            'vagera_id' => 'Vagera',
+            'vagera' => 'Vagera',
             'caste_id' => 'Caste',
         ],
     ],
@@ -139,6 +139,7 @@ return [
             'kootam_id' => 'Kootam',
             'vagera_id' => 'Vagera',
             'caste_id' => 'Caste',
+            'remarks' => 'Remarks',
         ],
     ],
 

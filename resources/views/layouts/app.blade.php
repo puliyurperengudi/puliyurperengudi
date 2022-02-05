@@ -43,6 +43,10 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha512-G3jAqT2eM4MMkLMyQR5YBhvN5/Da3IG6kqgYqU9zlIH4+2a+GuMdLb5Kpxy6ItMdCfgaKlo2XFhI0dHtMJjoRw==" crossorigin="anonymous"></script>
 
+        // Select2
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
         @livewireStyles
     </head>
 
@@ -77,6 +81,14 @@
         @endif
 
         <script>
+
+            // In your Javascript (external .js resource or <script> tag)
+            $(document).ready(function() {
+                $(".select2").select2({
+                    theme: "classic"
+                });
+
+            });
 
             $.ajaxSetup({
                 headers: {

@@ -18,19 +18,19 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.name')</h5>
-                    <span>{{ $donation->name ?? '-' }}</span>
+                    <span>{{ $donation->templeUser->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.mobile_number')</h5>
-                    <span>{{ $donation->mobile_number ?? '-' }}</span>
+                    <span>{{ $donation->templeUser->mobile_number ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.father_name')</h5>
-                    <span>{{ $donation->father_name ?? '-' }}</span>
+                    <span>{{ $donation->templeUser->father_name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.address')</h5>
-                    <span>{{ $donation->address ?? '-' }}</span>
+                    <span>{{ $donation->templeUser->address ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.receipt_no')</h5>
@@ -41,24 +41,20 @@
                     <span>{{ $donation->last_paid_amount ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.donations.inputs.last_paid_to')</h5>
-                    <span>{{ $donation->last_paid_to ?? '-' }}</span>
-                </div>
-                <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.kootam_id')</h5>
                     <span>{{ optional($donation->kootam)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.vagera_id')</h5>
-                    <span>{{ optional($donation->vagera)->name ?? '-' }}</span>
+                    <span>{{ optional($donation)->vagera ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.caste_id')</h5>
                     <span>{{ optional($donation->caste)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
-                    <h5>@lang('crud.donations.inputs.caste_id')</h5>
-                    <span>{{ optional($donation->remarks) ?? '-' }}</span>
+                    <h5>@lang('crud.donations.inputs.remarks')</h5>
+                    <span>{{ optional($donation)->remarks ?? '-' }}</span>
                 </div>
             </div>
 
