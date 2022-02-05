@@ -1,6 +1,17 @@
 @php $editing = isset($taxPayers) @endphp
 
 <div class="row">
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="tax_list_id" label="Tax List" required id="tax_list_id">
+            @php $selected = old('tax_list_id', ($editing ? $taxPayers->tax_list_id : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Tax List</option>
+            @foreach($taxLists as $value => $label)
+                <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="temple_user_id" label="Temple User" required id="temple_user_id">
             @php $selected = old('temple_user_id', ($editing ? $taxPayers->temple_user_id : '')) @endphp
@@ -20,16 +31,6 @@
             <p><strong>Pending Amount : </strong><span id="pending-amount">-</span></p>
         </div>
     </div>
-
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="tax_list_id" label="Tax List" required id="tax_list_id">
-            @php $selected = old('tax_list_id', ($editing ? $taxPayers->tax_list_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Tax List</option>
-            @foreach($taxLists as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
-            @endforeach
-        </x-inputs.select>
-    </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.number
