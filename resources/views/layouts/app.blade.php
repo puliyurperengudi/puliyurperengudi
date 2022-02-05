@@ -88,6 +88,10 @@
                     theme: "classic"
                 });
 
+                $(".select2-tag").select2({
+                    theme: "classic",
+                    tags: true
+                });
             });
 
             $.ajaxSetup({

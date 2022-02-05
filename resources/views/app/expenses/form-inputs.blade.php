@@ -2,7 +2,7 @@
 
 <div class="row">
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="tax_list_id" label="Tax List" required>
+        <x-inputs.select name="tax_list_id" label="Tax List" required class="select2">
             @php $selected = old('tax_list_id', ($editing ? $expense->tax_list_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Tax List</option>
             @foreach($taxLists as $value => $label)
@@ -12,7 +12,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="expense_type_id" label="Expense Type" required>
+        <x-inputs.select name="expense_type_id" label="Expense Type" required class="select2-tag">
             @php $selected = old('expense_type_id', ($editing ? $expense->expense_type_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Expense Type</option>
             @foreach($expenseTypes as $value => $label)

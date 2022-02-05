@@ -52,6 +52,11 @@ class ExpenseController extends Controller
 
         $validated = $request->validated();
 
+        if (!is_numeric($request->expense_type_id)) {
+            $expenseType = ExpenseType::create(['name' => $request->expense_type_id]);
+            $validated['expense_type_id'] = $expenseType->id;
+        }
+
         $expense = Expense::create($validated);
 
         return redirect()
@@ -99,6 +104,11 @@ class ExpenseController extends Controller
         $this->authorize('update', $expense);
 
         $validated = $request->validated();
+
+        if (!is_numeric($request->expense_type_id)) {
+            $expenseType = ExpenseType::create(['name' => $request->expense_type_id]);
+            $validated['expense_type_id'] = $expenseType->id;
+        }
 
         $expense->update($validated);
 
