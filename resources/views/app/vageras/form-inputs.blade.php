@@ -13,7 +13,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="kootam_id" label="Kootam" required>
+        <x-inputs.select name="kootam_id" label="Kootam" required class="select2">
             @php $selected = old('kootam_id', ($editing ? $vagera->kootam_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Kootam</option>
             @foreach($kootams as $value => $label)

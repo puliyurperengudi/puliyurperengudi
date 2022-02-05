@@ -13,7 +13,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="caste_id" label="Caste" required>
+        <x-inputs.select name="caste_id" label="Caste" required class="select2">
             @php $selected = old('caste_id', ($editing ? $kootam->caste_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Caste</option>
             @foreach($castes as $value => $label)

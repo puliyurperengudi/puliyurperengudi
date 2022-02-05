@@ -3,7 +3,7 @@
 <div class="row">
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="tax_list_id" label="Tax List" required id="tax_list_id">
+        <x-inputs.select name="tax_list_id" label="Tax List" required id="tax_list_id" class="select2">
             @php $selected = old('tax_list_id', ($editing ? $taxPayers->tax_list_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Tax List</option>
             @foreach($taxLists as $value => $label)
@@ -13,7 +13,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="temple_user_id" label="Temple User" required id="temple_user_id">
+        <x-inputs.select name="temple_user_id" label="Temple User" required id="temple_user_id" class="select2">
             @php $selected = old('temple_user_id', ($editing ? $taxPayers->temple_user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Temple User</option>
             @foreach($templeUsers as $id => $templeUser)
