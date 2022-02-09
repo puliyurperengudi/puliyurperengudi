@@ -111,6 +111,14 @@
                                 </a>
                             </li>
                             @endcan
+                            @can('view-any', App\Models\Village::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('villages.index') }}" class="nav-link">
+                                        <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                        <p>Village / கிராமம்</p>
+                                    </a>
+                                </li>
+                            @endcan
                     </ul>
                 </li>
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommonAddressController;
+use App\Http\Controllers\VillageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -86,4 +88,7 @@ Route::prefix('/')
         ])->name('donations.pending-tax');
         Route::resource('expense-types', ExpenseTypeController::class);
         Route::resource('expenses', ExpenseController::class);
+        Route::resource('villages', VillageController::class);
+        Route::get('get-states/{countryId}', [CommonAddressController::class, 'getStates']);
+        Route::get('get-cities/{cityId}', [CommonAddressController::class, 'getCities']);
     });

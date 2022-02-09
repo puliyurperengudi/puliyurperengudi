@@ -59,6 +59,24 @@ return [
         ],
     ],
 
+    'villages' => [
+        'name' => 'Villages',
+        'index_title' => 'Villages List / கிராமம்',
+        'new_title' => 'New Village',
+        'create_title' => 'Create Village',
+        'edit_title' => 'Edit Village',
+        'show_title' => 'Show Village',
+        'inputs' => [
+            'name' => 'Village Name',
+            'country_id' => 'Country',
+            'state_id' => 'State',
+            'city_id' => 'City',
+            'country' => 'Country',
+            'state' => 'State',
+            'city' => 'City',
+        ],
+    ],
+
     'vageras' => [
         'name' => 'Vageras',
         'index_title' => 'Vagayara List / வகையாரா பட்டியல்',

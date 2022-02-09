@@ -17,7 +17,6 @@ class CreateTaxListsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->decimal('amount');
-
             $table->timestamps();
         });
     }
