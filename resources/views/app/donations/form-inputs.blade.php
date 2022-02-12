@@ -37,7 +37,7 @@
             </x-inputs.select>
         </x-inputs.group>
     </div>
-    
+
     @php
         $oldStateId = old('state_id', ($editing ? $templeUser->state_id : ''));
         $oldCityId = old('city_id', ($editing ? $templeUser->city_id : ''));

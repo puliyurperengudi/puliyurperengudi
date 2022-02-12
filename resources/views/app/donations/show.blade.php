@@ -33,6 +33,22 @@
                     <span>{{ $donation->templeUser->address ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.village_id')</h5>
+                    <span>{{ optional($donation->templeUser->village)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.city_id')</h5>
+                    <span>{{ optional($donation->templeUser->city)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.state_id')</h5>
+                    <span>{{ optional($donation->templeUser->state)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.country_id')</h5>
+                    <span>{{ optional($donation->templeUser->country)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.receipt_no')</h5>
                     <span>{{ $donation->receipt_no ?? '-' }}</span>
                 </div>
