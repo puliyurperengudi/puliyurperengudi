@@ -25,6 +25,22 @@
                     <span>{{ $templeUser->address ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.village_id')</h5>
+                    <span>{{ optional($templeUser->village)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.city_id')</h5>
+                    <span>{{ optional($templeUser->city)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.state_id')</h5>
+                    <span>{{ optional($templeUser->state)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
+                    <h5>@lang('crud.temple_users.inputs.country_id')</h5>
+                    <span>{{ optional($templeUser->country)->name ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.temple_users.inputs.mobile_number')</h5>
                     <span>{{ $templeUser->mobile_number ?? '-' }}</span>
                 </div>

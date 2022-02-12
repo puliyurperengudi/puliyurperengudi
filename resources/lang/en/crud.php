@@ -105,6 +105,10 @@ return [
             'kootam_id' => 'Kootam',
             'vagera' => 'Vagera',
             'caste_id' => 'Caste',
+            'country_id' => 'Country',
+            'state_id' => 'State',
+            'city_id' => 'City',
+            'village_id' => 'Village',
         ],
     ],
 

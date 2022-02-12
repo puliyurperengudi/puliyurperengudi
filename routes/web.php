@@ -91,4 +91,5 @@ Route::prefix('/')
         Route::resource('villages', VillageController::class);
         Route::get('get-states/{countryId}', [CommonAddressController::class, 'getStates']);
         Route::get('get-cities/{cityId}', [CommonAddressController::class, 'getCities']);
+        Route::get('get-villages/{cityId}', [CommonAddressController::class, 'getVillages']);
     });

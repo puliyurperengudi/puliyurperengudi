@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caste;
+use App\Models\Country;
 use App\Models\Kootam;
 use App\Models\Vagera;
 use App\Models\TempleUser;
@@ -39,10 +40,11 @@ class TempleUserController extends Controller
 
         $kootams = Kootam::pluck('name', 'id');
         $castes = Caste::pluck('name', 'id');
+        $countries = Country::pluck('name', 'id');
 
         return view(
             'app.temple_users.create',
-            compact('kootams','castes')
+            compact('kootams','castes', 'countries')
         );
     }
 
@@ -87,10 +89,11 @@ class TempleUserController extends Controller
         $kootams = Kootam::pluck('name', 'id');
         $vageras = Vagera::pluck('name', 'id');
         $castes = Caste::pluck('name', 'id');
+        $countries = Country::pluck('name', 'id');
 
         return view(
             'app.temple_users.edit',
-            compact('templeUser', 'kootams', 'vageras', 'castes')
+            compact('templeUser', 'kootams', 'vageras', 'castes', 'countries')
         );
     }
 

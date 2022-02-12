@@ -19,6 +19,10 @@ class TempleUser extends Model
         'kootam_id',
         'vagera',
         'caste_id',
+        'country_id',
+        'state_id',
+        'city_id',
+        'village_id'
     ];
 
     protected $searchableFields = ['*'];
@@ -43,5 +47,25 @@ class TempleUser extends Model
     public function caste()
     {
         return $this->belongsTo(Caste::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
     }
 }

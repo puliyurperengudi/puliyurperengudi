@@ -30,6 +30,10 @@ class TempleUserUpdateRequest extends FormRequest
             'kootam_id' => ['required', 'exists:kootams,id'],
             'caste_id' => ['required', 'exists:castes,id'],
             'vagera' => ['max:255', 'string'],
+            'country_id' => ['required', 'exists:countries,id'],
+            'state_id' => ['required', 'exists:states,id'],
+            'city_id' => ['required', 'exists:cities,id'],
+            'village_id' => ['required', 'exists:villages,id'],
         ];
     }
 }
