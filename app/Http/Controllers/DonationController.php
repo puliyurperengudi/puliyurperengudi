@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caste;
+use App\Models\Country;
 use App\Models\Kootam;
 use App\Models\TempleUser;
 use App\Models\Vagera;
@@ -43,10 +44,11 @@ class DonationController extends Controller
         $kootams = Kootam::pluck('name', 'id');
         $castes = Caste::pluck('name', 'id');
         $templeUsers = TempleUser::all();
+        $countries = Country::pluck('name', 'id');
 
         return view(
             'app.donations.create',
-            compact('taxLists', 'kootams', 'castes', 'templeUsers')
+            compact('taxLists', 'kootams', 'castes', 'templeUsers', 'countries')
         );
     }
 
@@ -69,6 +71,10 @@ class DonationController extends Controller
                 'kootam_id' => $request->kootam_id,
                 'caste_id' => $request->caste_id,
                 'vagera' => $request->vagera,
+                'country_id' => $request->country_id,
+                'state_id' => $request->state_id,
+                'city_id' => $request->city_id,
+                'village_id' => $request->village_id,
             ]);
             $validated['temple_user_id'] = $templeUser->id;
         }
@@ -104,10 +110,11 @@ class DonationController extends Controller
         $kootams = Kootam::pluck('name', 'id');
         $castes = Caste::pluck('name', 'id');
         $templeUsers = TempleUser::all();
+        $countries = Country::pluck('name', 'id');
 
         return view(
             'app.donations.edit',
-            compact('donation', 'taxLists', 'kootams', 'castes', 'templeUsers')
+            compact('donation', 'taxLists', 'kootams', 'castes', 'templeUsers', 'countries')
         );
     }
 

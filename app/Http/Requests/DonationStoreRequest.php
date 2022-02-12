@@ -38,6 +38,10 @@ class DonationStoreRequest extends FormRequest
                 'mobile_number' => ['required', 'max:255', 'string'],
                 'father_name' => ['required', 'max:255', 'string'],
                 'address' => ['required', 'max:255', 'string'],
+                'country_id' => ['required', 'exists:countries,id'],
+                'state_id' => ['required', 'exists:states,id'],
+                'city_id' => ['required', 'exists:cities,id'],
+                'village_id' => ['required', 'exists:villages,id'],
             ]);
         } else {
             $rules = array_merge($rules, [
