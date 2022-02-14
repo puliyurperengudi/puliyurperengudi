@@ -75,6 +75,14 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update vageras']);
         Permission::create(['name' => 'delete vageras']);
 
+        Permission::create(['name' => 'list villages']);
+        Permission::create(['name' => 'view villages']);
+        Permission::create(['name' => 'create villages']);
+        Permission::create(['name' => 'update villages']);
+        Permission::create(['name' => 'delete villages']);
+
+        Permission::create(['name' => 'reports']);
+
         // Create user role and assign existing permissions
         $currentPermissions = Permission::all();
         $userRole = Role::create(['name' => 'user']);

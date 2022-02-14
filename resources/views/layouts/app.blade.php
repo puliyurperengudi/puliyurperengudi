@@ -40,12 +40,13 @@
         }
         </style>
 
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha512-G3jAqT2eM4MMkLMyQR5YBhvN5/Da3IG6kqgYqU9zlIH4+2a+GuMdLb5Kpxy6ItMdCfgaKlo2XFhI0dHtMJjoRw==" crossorigin="anonymous"></script>
 
         // Select2
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
 
         @livewireStyles
     </head>
@@ -72,6 +73,10 @@
         @stack('scripts')
 
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+        <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js" defer></script>
+        <script src="{{ asset('/vendor/datatables/buttons.server-side.js') }}" defer></script>
+        {!! $dataTable->scripts() !!}
 
         @if (session()->has('success'))
         <script>

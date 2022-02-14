@@ -153,6 +153,26 @@
                     </ul>
                 </li>
                 @endif
+
+                @can('reports')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon icon ion-md-radio-button-off"></i>
+                            <p>
+                                Reports
+                                <i class="nav-icon right icon ion-md-arrow-round-back"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('donation.report') }}" class="nav-link">
+                                    <i class="nav-icon icon ion-md-arrow-round-back"></i>
+                                    <p>Donation Report</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
                 @endauth
 
                 @auth
