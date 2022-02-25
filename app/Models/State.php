@@ -11,15 +11,7 @@ class State extends Model
 
     protected $fillable = [
         'name',
-        'country_id',
-        'country_code',
-        'fips_code',
-        'iso2',
-        'type',
-        'latitude',
-        'longitude',
-        'flag',
-        'wikiDataId',
+        'country_id'
     ];
 
     public function country()
