@@ -14,9 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Adding an admin user
-        $user = \App\Models\User::factory()
-            ->count(1)
-            ->create([
+        $user = \App\Models\User::create([
                 'email' => 'admin@admin.com',
                 'password' => \Hash::make('admin'),
             ]);
