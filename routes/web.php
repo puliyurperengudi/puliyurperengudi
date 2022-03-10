@@ -30,7 +30,7 @@ use App\Http\Controllers\ExpenseTypeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Auth::routes(['register' => false , 'reset' => false]);
 
 Route::prefix('/')
     ->middleware('auth')
