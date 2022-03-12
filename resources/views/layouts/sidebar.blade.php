@@ -154,7 +154,7 @@
                 </li>
                 @endif
 
-                @can('reports')
+                @if(auth()->user()->hasPermissionTo('donations report') || auth()->user()->hasPermissionTo('paytax report'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon icon ion-md-radio-button-off"></i>
@@ -163,16 +163,28 @@
                                 <i class="nav-icon right icon ion-md-arrow-round-back"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('donation.report') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-arrow-round-back"></i>
-                                    <p>Donation Report</p>
-                                </a>
-                            </li>
-                        </ul>
+                        @if(auth()->user()->hasPermissionTo('donations report'))
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" onclick="openLinkInCurrentTab('{{ route('donation.report') }}')">
+                                        <i class="nav-icon icon ion-md-arrow-round-back"></i>
+                                        <p>Donation Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
+                        @if(auth()->user()->hasPermissionTo('paytax report'))
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" onclick="openLinkInCurrentTab('{{ route('pay-tax.report') }}')">
+                                        <i class="nav-icon icon ion-md-arrow-round-back"></i>
+                                        <p>Pay Tax Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
                     </li>
-                @endcan
+                @endif
                 @endauth
 
                 @auth

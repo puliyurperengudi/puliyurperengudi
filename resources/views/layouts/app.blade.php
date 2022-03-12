@@ -46,7 +46,7 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
+{{--        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">--}}
 
         @livewireStyles
     </head>
@@ -70,13 +70,11 @@
 
         <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
 
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/b-1.7.1/b-html5-1.7.1/datatables.min.js"></script>
+
         @stack('scripts')
 
         <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-
-        <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js" defer></script>
-        <script src="{{ asset('/vendor/datatables/buttons.server-side.js') }}" defer></script>
-        {!! $dataTable->scripts() !!}
 
         @if (session()->has('success'))
         <script>
@@ -128,6 +126,10 @@
                         reader.onload = e => callback(e.target.result)
                     },
                 }
+            }
+
+            function openLinkInCurrentTab(link) {
+                location.href = link;
             }
         </script>
     </body>

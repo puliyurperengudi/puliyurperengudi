@@ -25,7 +25,7 @@ class DonationController extends Controller
 
         $search = $request->get('search', '');
 
-        $donations = Donation::search($search)
+        $donations = Donation::with('taxList', 'templeUser')->search($search)
             ->latest()
             ->paginate(5);
 

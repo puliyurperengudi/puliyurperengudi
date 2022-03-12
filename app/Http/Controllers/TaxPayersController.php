@@ -86,7 +86,7 @@ class TaxPayersController extends Controller
     {
         $this->authorize('update', $taxPayers);
 
-        $templeUsers = TempleUser::pluck('name', 'id');
+        $templeUsers = TempleUser::all()->groupBy('id');
         $taxLists = TaxList::pluck('name', 'id');
 
         return view(

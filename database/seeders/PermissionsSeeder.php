@@ -81,8 +81,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update villages']);
         Permission::create(['name' => 'delete villages']);
 
-        Permission::create(['name' => 'reports']);
-
         // Create user role and assign existing permissions
         $currentPermissions = Permission::all();
         $userRole = Role::create(['name' => 'user']);
@@ -106,6 +104,9 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create users']);
         Permission::create(['name' => 'update users']);
         Permission::create(['name' => 'delete users']);
+
+        Permission::create(['name' => 'donations report']);
+        Permission::create(['name' => 'paytax report']);
 
         // Create admin role and assign all permissions
         $allPermissions = Permission::all();

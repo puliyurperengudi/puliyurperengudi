@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <span>
-                        {{ __('Donation Report') }}
+                        {{ __('Pay Tax Report') }}
                     </span>
                 </div>
 

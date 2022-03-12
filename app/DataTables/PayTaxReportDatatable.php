@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Donation;
+use App\Models\TaxPayers;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -10,7 +11,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class DonationReportDatatable extends DataTable
+class PayTaxReportDatatable extends DataTable
 {
     /**
      * Display ajax response.
@@ -22,29 +23,26 @@ class DonationReportDatatable extends DataTable
     {
         return datatables()
             ->eloquent($this->query())
-            ->addColumn('paid_at', function ($donation) {
-                return $donation->created_at->format('d/m/Y H:i');
+            ->addColumn('temple_user', function ($taxPayer) {
+                return $taxPayer->templeUser->name;
             })
-            ->addColumn('tax_list', function ($donation) {
-                return $donation->taxList->name;
+            ->addColumn('tax_list', function ($taxPayer) {
+                return $taxPayer->taxList->name;
             })
-            ->addColumn('name', function ($donation) {
-                return $donation->templeUser->name;
+            ->addColumn('paid_amount', function ($taxPayer) {
+                return $taxPayer->total_paid_amount . '(' . $taxPayer->paid_amount_details .')';
             })
-            ->addColumn('mobile_number', function ($donation) {
-                return $donation->templeUser->mobile_number;
+            ->addColumn('paid_date', function ($taxPayer) {
+                return $taxPayer->paid_date_details;
             })
-            ->addColumn('father_name', function ($donation) {
-                return $donation->templeUser->father_name;
+            ->addColumn('paid_to', function ($taxPayer) {
+                return $taxPayer->paid_to_details;
             })
-            ->addColumn('address', function ($donation) {
-                return $donation->templeUser->address;
+            ->addColumn('receipt_no', function ($taxPayer) {
+                return $taxPayer->receipt_no_details;
             })
-            ->addColumn('kootam', function ($donation) {
-                return $donation->kootam->name;
-            })
-            ->addColumn('caste', function ($donation) {
-                return $donation->caste->name;
+            ->addColumn('action', function ($taxPayer) {
+                return '<a href="#" onclick="openLinkInCurrentTab(\''. route('pay-tax-details.report', [$taxPayer->temple_user_id, $taxPayer->tax_list_id]) .'\')"><button type="button" class="btn btn-light"><i class="icon ion-md-eye"></i></button></a>';
             })
             ->make(true);
     }
@@ -60,7 +58,7 @@ class DonationReportDatatable extends DataTable
         $toDate = request()->get('to_date');
         $templeUserId = request()->get('temple_user_id');
         $taxListId = request()->get('tax_list_id');
-        $query = Donation::with('taxList', 'templeUser', 'kootam', 'caste')
+        $query = TaxPayers::with('taxList', 'templeUser')
             ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
                 return $query->where('created_at', '>', $fromDate);
             })
@@ -72,7 +70,12 @@ class DonationReportDatatable extends DataTable
             })
             ->when(($taxListId && $taxListId != ''), function ($query) use ($taxListId) {
                 return $query->where('tax_list_id', $taxListId);
-            });
+            })
+            ->groupBy('temple_user_id', 'tax_list_id')
+            ->selectRaw(
+                'temple_user_id, tax_list_id, SUM(paid_amount) as total_paid_amount, GROUP_CONCAT(paid_amount) as paid_amount_details,
+                GROUP_CONCAT(paid_date) as paid_date_details, GROUP_CONCAT(paid_to) as paid_to_details, GROUP_CONCAT(receipt_no) as receipt_no_details'
+            );
         return $this->applyScopes($query);
     }
 
@@ -105,17 +108,17 @@ class DonationReportDatatable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('temple_user'),
             Column::make('tax_list'),
-            Column::make('name'),
-            Column::make('mobile_number'),
-            Column::make('father_name'),
-            Column::make('address'),
+            Column::make('paid_amount'),
+            Column::make('paid_date'),
+            Column::make('paid_to'),
             Column::make('receipt_no'),
-            Column::make('last_paid_amount'),
-            Column::make('kootam'),
-            Column::make('vagera'),
-            Column::make('caste'),
-            Column::make('paid_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -126,6 +129,6 @@ class DonationReportDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'DonationReport_' . date('YmdHis');
+        return 'PayTaxReport_' . date('YmdHis');
     }
 }
