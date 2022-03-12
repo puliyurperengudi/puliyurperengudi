@@ -12,15 +12,7 @@ class City extends Model
     protected $fillable = [
         'name',
         'state_id',
-        'state_code',
         'country_id',
-        'country_code',
-        'latitude',
-        'longitude',
-        'created_at',
-        'updated_at',
-        'flag',
-        'wikiDataId',
     ];
 
     public function country()

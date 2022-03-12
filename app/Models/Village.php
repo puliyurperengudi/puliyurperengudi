@@ -15,7 +15,7 @@ class Village extends Model
         'name',
         'country_id',
         'state_id',
-        'city_id',
+        'city_id'
     ];
 
     public function country()
