@@ -31,7 +31,7 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.all_tax_payers.inputs.paid_date')</h5>
-                    <span>{{ $taxPayers->paid_date ?? '-' }}</span>
+                    <span>{{ $taxPayers->paid_date->format('d/m/Y H:i') ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.all_tax_payers.inputs.paid_to')</h5>

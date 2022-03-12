@@ -83,7 +83,7 @@
                                 {{ optional($taxPayers->taxList)->name ?? '-' }}
                             </td>
                             <td>{{ $taxPayers->paid_amount ?? '-' }}</td>
-                            <td>{{ $taxPayers->paid_date ?? '-' }}</td>
+                            <td>{{ $taxPayers->paid_date->format('d/m/Y H:i') ?? '-' }}</td>
                             <td>{{ $taxPayers->paid_to ?? '-' }}</td>
                             <td>{{ $taxPayers->receipt_no ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">

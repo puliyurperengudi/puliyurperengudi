@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommonAddressController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\VillageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -92,4 +93,8 @@ Route::prefix('/')
         Route::get('get-states/{countryId}', [CommonAddressController::class, 'getStates']);
         Route::get('get-cities/{cityId}', [CommonAddressController::class, 'getCities']);
         Route::get('get-villages/{cityId}', [CommonAddressController::class, 'getVillages']);
+
+        Route::get('donation-report', [ReportsController::class, 'getDonationReport'])->name('donation.report')->can('donations report');
+        Route::get('pay-tax-report', [ReportsController::class, 'getPayTaxReport'])->name('pay-tax.report')->can('paytax report');
+        Route::get('pay-tax-report-details/{userId}/{payTaxId}', [ReportsController::class, 'getPayTaxReportDetails'])->name('pay-tax-details.report')->can('paytax report');
     });
