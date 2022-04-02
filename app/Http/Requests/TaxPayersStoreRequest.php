@@ -29,7 +29,7 @@ class TaxPayersStoreRequest extends FormRequest
             'paid_date' => ['required', 'date'],
             'paid_to' => ['required', 'max:255', 'string'],
             'receipt_no' => ['required', 'max:255', 'string'],
-            'remarks' => ['required', 'max:255', 'string'],
+            'remarks' => ['nullable', 'max:255', 'string'],
         ];
     }
 }

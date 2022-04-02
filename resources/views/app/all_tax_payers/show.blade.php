@@ -13,6 +13,13 @@
 
             <div class="mt-4">
                 <div class="mb-4">
+                    <h5>User Id</h5>
+                    <span
+                        >{{ optional($taxPayers->templeUser)->userId() ?? '-'
+                        }}</span
+                    >
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.all_tax_payers.inputs.temple_user_id')</h5>
                     <span
                         >{{ optional($taxPayers->templeUser)->name ?? '-'
@@ -31,7 +38,7 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.all_tax_payers.inputs.paid_date')</h5>
-                    <span>{{ $taxPayers->paid_date->format('d/m/Y H:i') ?? '-' }}</span>
+                    <span>{{ $taxPayers->paid_date->format(DATE_FORMAT) ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.all_tax_payers.inputs.paid_to')</h5>

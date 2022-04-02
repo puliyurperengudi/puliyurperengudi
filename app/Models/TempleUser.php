@@ -68,4 +68,9 @@ class TempleUser extends Model
     {
         return $this->belongsTo(Village::class);
     }
+
+    public function userId()
+    {
+        return 'PP' . $this->id;
+    }
 }

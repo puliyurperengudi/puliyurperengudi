@@ -28,8 +28,8 @@ class DonationStoreRequest extends FormRequest
             'last_paid_amount' => ['required', 'numeric'],
             'kootam_id' => ['required', 'exists:kootams,id'],
             'caste_id' => ['required', 'exists:castes,id'],
-            'remarks' => ['max:255', 'string'],
-            'vagera' => ['max:255', 'string'],
+            'remarks' => ['nullable', 'max:255', 'string'],
+            'vagera' => ['nullable', 'max:255', 'string'],
         ];
 
         if ($this->request->get('user_type') == 'new-user') {

@@ -26,10 +26,7 @@
             </div>
             <div class="col-md-6 text-right">
                 @can('create', App\Models\TempleUser::class)
-                <a
-                    href="{{ route('temple-users.create') }}"
-                    class="btn btn-primary"
-                >
+                <a href="{{ route('temple-users.create') }}" class="btn btn-primary">
                     <i class="icon ion-md-add"></i> @lang('crud.common.create')
                 </a>
                 @endcan
@@ -49,6 +46,9 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
+                            <th class="text-left">
+                                User Id
+                            </th>
                             <th class="text-left">
                                 @lang('crud.temple_users.inputs.name')
                             </th>
@@ -78,6 +78,7 @@
                     <tbody>
                         @forelse($templeUsers as $templeUser)
                         <tr>
+                            <td>{{ $templeUser->userId() ?? '-' }}</td>
                             <td>{{ $templeUser->name ?? '-' }}</td>
                             <td>{{ $templeUser->father_name ?? '-' }}</td>
                             <td>{{ $templeUser->address ?? '-' }}</td>

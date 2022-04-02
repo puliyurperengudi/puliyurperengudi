@@ -20,7 +20,7 @@
                         </div>
                         <div class="mb-4">
                             <h5>Paid Date</h5>
-                            <span>{{ $taxPayer->paid_date->format('Y-m-d') }}</span>
+                            <span>{{ $taxPayer->paid_date->format(DATE_FORMAT) }}</span>
                         </div>
                         <div class="mb-4">
                             <h5>Paid To</h5>

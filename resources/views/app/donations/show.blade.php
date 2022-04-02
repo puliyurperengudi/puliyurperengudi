@@ -17,6 +17,10 @@
                     <span>{{ optional($donation->taxList)->name ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
+                    <h5>User Id</h5>
+                    <span>{{ $donation->templeUser->userId() ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.donations.inputs.name')</h5>
                     <span>{{ $donation->templeUser->name ?? '-' }}</span>
                 </div>

@@ -70,7 +70,7 @@ class DonationController extends Controller
                 'mobile_number' => $request->mobile_number,
                 'kootam_id' => $request->kootam_id,
                 'caste_id' => $request->caste_id,
-                'vagera' => $request->vagera,
+                'vagera' => $request->vagera ?? null,
                 'country_id' => $request->country_id,
                 'state_id' => $request->state_id,
                 'city_id' => $request->city_id,

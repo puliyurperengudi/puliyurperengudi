@@ -50,6 +50,9 @@
                     <thead>
                         <tr>
                             <th class="text-left">
+                                User Id
+                            </th>
+                            <th class="text-left">
                                 @lang('crud.all_tax_payers.inputs.temple_user_id')
                             </th>
                             <th class="text-left">
@@ -76,14 +79,16 @@
                         @forelse($allTaxPayers as $taxPayers)
                         <tr>
                             <td>
-                                {{ optional($taxPayers->templeUser)->name ?? '-'
-                                }}
+                                {{ optional($taxPayers->templeUser)->userId() ?? '-'}}
+                            </td>
+                            <td>
+                                {{ optional($taxPayers->templeUser)->name ?? '-'}}
                             </td>
                             <td>
                                 {{ optional($taxPayers->taxList)->name ?? '-' }}
                             </td>
                             <td>{{ $taxPayers->paid_amount ?? '-' }}</td>
-                            <td>{{ $taxPayers->paid_date->format('d/m/Y H:i') ?? '-' }}</td>
+                            <td>{{ $taxPayers->paid_date->format(DATE_FORMAT) ?? '-' }}</td>
                             <td>{{ $taxPayers->paid_to ?? '-' }}</td>
                             <td>{{ $taxPayers->receipt_no ?? '-' }}</td>
                             <td class="text-center" style="width: 134px;">

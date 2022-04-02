@@ -13,6 +13,10 @@
 
             <div class="mt-4">
                 <div class="mb-4">
+                    <h5>User Id</h5>
+                    <span>{{ $templeUser->userId() ?? '-' }}</span>
+                </div>
+                <div class="mb-4">
                     <h5>@lang('crud.temple_users.inputs.name')</h5>
                     <span>{{ $templeUser->name ?? '-' }}</span>
                 </div>

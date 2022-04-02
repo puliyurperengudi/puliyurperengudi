@@ -32,7 +32,7 @@
                 @php $selected = old('temple_user_id', ($editing ? $donation->temple_user_id : '')) @endphp
                 <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select a Temple User</option>
                 @foreach($templeUsers as $templeUser)
-                    <option value="{{ $templeUser->id }}" {{ $selected == $templeUser->id ? 'selected' : '' }} >{{ $templeUser->name . '   ||   ' . $templeUser->father_name . '   ||   ' . $templeUser->mobile_number . '   ||   ' . $templeUser->address }}</option>
+                    <option value="{{ $templeUser->id }}" {{ $selected == $templeUser->id ? 'selected' : '' }} >{{ $templeUser->userId() . '   ||   ' . $templeUser->name . '   ||   ' . $templeUser->father_name . '   ||   ' . $templeUser->mobile_number . '   ||   ' . $templeUser->address }}</option>
                 @endforeach
             </x-inputs.select>
         </x-inputs.group>
@@ -173,7 +173,6 @@
             value="{{ old('vagera', ($editing ? $donation->vagera : '')) }}"
             maxlength="255"
             placeholder="Vagera"
-            required
         ></x-inputs.text>
     </x-inputs.group>
 
@@ -184,7 +183,6 @@
             value="{{ old('remarks', ($editing ? $donation->remarks : '')) }}"
             maxlength="255"
             placeholder="Remarks"
-            required
         ></x-inputs.text>
     </x-inputs.group>
 </div>

@@ -84,7 +84,7 @@
                                 }}
                             </td>
                             <td>{{ $expense->name ?? '-' }}</td>
-                            <td>{{ $expense->expense_date ?? '-' }}</td>
+                            <td>{{ $expense->expense_date->format(DATE_FORMAT) ?? '-' }}</td>
                             <td>{{ $expense->paid_to ?? '-' }}</td>
                             <td>{{ $expense->bill_no ?? '-' }}</td>
                             <td>{{ $expense->amount ?? '-' }}</td>

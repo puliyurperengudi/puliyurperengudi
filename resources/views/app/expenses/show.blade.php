@@ -29,7 +29,7 @@
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.expenses.inputs.expense_date')</h5>
-                    <span>{{ $expense->expense_date ?? '-' }}</span>
+                    <span>{{ $expense->expense_date->format(DATE_FORMAT) ?? '-' }}</span>
                 </div>
                 <div class="mb-4">
                     <h5>@lang('crud.expenses.inputs.paid_to')</h5>

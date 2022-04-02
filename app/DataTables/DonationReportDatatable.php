@@ -23,7 +23,7 @@ class DonationReportDatatable extends DataTable
         return datatables()
             ->eloquent($this->query())
             ->addColumn('paid_at', function ($donation) {
-                return $donation->created_at->format('d/m/Y H:i');
+                return $donation->created_at->format(DATE_FORMAT);
             })
             ->addColumn('tax_list', function ($donation) {
                 return $donation->taxList->name;

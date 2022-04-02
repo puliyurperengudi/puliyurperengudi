@@ -24,6 +24,7 @@
 
     <div class="card" style="width: 100%; padding-left: 20px; padding-right: 20px" id="user-details">
         <div class="card-body">
+            <p><strong>User Id : </strong><span id="user-id"></span></p>
             <p><strong>Name : </strong><span id="user-name"></span></p>
             <p><strong>Father Name : </strong><span id="father-name"></span></p>
             <p><strong>Mobile Number : </strong><span id="mobile-number"></span></p>
@@ -47,7 +48,7 @@
         <x-inputs.date
             name="paid_date"
             label="Paid Date"
-            value="{{ old('paid_date', ($editing ? optional($taxPayers->paid_date)->format('Y-m-d') : '')) }}"
+            value="{{ old('paid_date', ($editing ? optional($taxPayers->paid_date)->format(DATE_FORMAT) : '')) }}"
             required
         ></x-inputs.date>
     </x-inputs.group>
@@ -80,7 +81,6 @@
             value="{{ old('remarks', ($editing ? $taxPayers->remarks : '')) }}"
             maxlength="255"
             placeholder="Remarks"
-            required
         ></x-inputs.text>
     </x-inputs.group>
 </div>
@@ -91,6 +91,7 @@
 
     $('#temple_user_id').change(function() {
         var selectedUser = templeUsers[$(this).val()][0];
+        $("#user-id").html('PP' + selectedUser.id);
         $("#user-name").html(selectedUser.name);
         $("#father-name").html(selectedUser.father_name);
         $("#mobile-number").html(selectedUser.mobile_number);

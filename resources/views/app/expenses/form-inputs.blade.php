@@ -36,7 +36,7 @@
         <x-inputs.date
             name="expense_date"
             label="Expense Date"
-            value="{{ old('expense_date', ($editing ? optional($expense->expense_date)->format('Y-m-d') : '')) }}"
+            value="{{ old('expense_date', ($editing ? optional($expense->expense_date)->format(DATE_FORMAT) : '')) }}"
             required
         ></x-inputs.date>
     </x-inputs.group>
