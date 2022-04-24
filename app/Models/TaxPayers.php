@@ -22,6 +22,8 @@ class TaxPayers extends Model
         'remarks'
     ];
 
+    const USER_ID_PREFIX = 'PP';
+
     protected $searchableFields = ['*'];
 
     protected $table = 'tax_payers';
@@ -43,5 +45,29 @@ class TaxPayers extends Model
     public function allTaxPaymentDetails()
     {
         return $this->hasMany(TaxPaymentDetails::class);
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        $query->where(function ($query) use ($search) {
+            foreach ($this->getSearchableFields() as $field) {
+                if ($field == 'temple_user_id') {
+                    $updatedSearch = $search;
+                    if (strlen($search) > 2) {
+                        $firstTwoChar = substr($search, 0, 2);
+                        if ($firstTwoChar == self::USER_ID_PREFIX || $firstTwoChar == strtolower(self::USER_ID_PREFIX)) {
+                            $updatedSearch = substr($search, 2);
+                        }
+                    }
+                    if ($updatedSearch != '' || $updatedSearch != ' ') {
+                        $query->orWhere($field, $updatedSearch);
+                    }
+                } else {
+                    $query->orWhere($field, 'like', "%{$search}%");
+                }
+            }
+        });
+
+        return $query;
     }
 }

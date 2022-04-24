@@ -29,6 +29,18 @@ class PayTaxReportDatatable extends DataTable
             ->addColumn('tax_list', function ($taxPayer) {
                 return $taxPayer->taxList->name;
             })
+            ->addColumn('country_name', function ($taxPayer) {
+                return $taxPayer->templeUser->country->name ?? '-';
+            })
+            ->addColumn('state_name', function ($taxPayer) {
+                return $taxPayer->templeUser->state->name ?? '-';
+            })
+            ->addColumn('city_name', function ($taxPayer) {
+                return $taxPayer->templeUser->city->name ?? '-';
+            })
+            ->addColumn('village_name', function ($taxPayer) {
+                return $taxPayer->templeUser->village->name ?? '-';
+            })
             ->addColumn('paid_amount', function ($taxPayer) {
                 return $taxPayer->total_paid_amount;
 //                return $taxPayer->total_paid_amount . '(' . $taxPayer->paid_amount_details .')';
@@ -59,7 +71,7 @@ class PayTaxReportDatatable extends DataTable
         $toDate = request()->get('to_date');
         $templeUserId = request()->get('temple_user_id');
         $taxListId = request()->get('tax_list_id');
-        $query = TaxPayers::with('taxList', 'templeUser')
+        $query = TaxPayers::with('taxList', 'templeUser', 'templeUser.country', 'templeUser.state', 'templeUser.city', 'templeUser.village')
             ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
                 return $query->where('created_at', '>', $fromDate);
             })
@@ -112,6 +124,10 @@ class PayTaxReportDatatable extends DataTable
     {
         return [
             Column::make('temple_user'),
+            Column::make('village_name'),
+            Column::make('city_name'),
+            Column::make('state_name'),
+            Column::make('country_name'),
             Column::make('tax_list'),
             Column::make('paid_amount'),
 //            Column::make('paid_date'),

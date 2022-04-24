@@ -71,6 +71,6 @@ class TempleUser extends Model
 
     public function userId()
     {
-        return 'PP' . $this->id;
+        return TaxPayers::USER_ID_PREFIX . $this->id;
     }
 }
