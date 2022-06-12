@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://puliyurtemple-env.eba-pnduydf6.ap-south-1.elasticbeanstalk.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:gTv593iso9yCf6FKTYDN8jHA+L4K/wKkWyRQqm+3KjI='),
 
     'cipher' => 'AES-256-CBC',
 
