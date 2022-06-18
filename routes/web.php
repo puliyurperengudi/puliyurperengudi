@@ -80,7 +80,7 @@ Route::prefix('/')
 
         Route::resource('donations', DonationController::class);
         Route::get('donations-invoice-download/{donation}', [
-            TaxPayersController::class,
+            DonationController::class,
             'downloadInvoice',
         ])->name('donations.invoice-download');
         Route::post('pending-tax-details', [
