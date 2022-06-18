@@ -73,4 +73,10 @@ class TempleUser extends Model
     {
         return TaxPayers::USER_ID_PREFIX . $this->id;
     }
+
+    public function getAddress()
+    {
+        $this->load('village', 'city', 'state', 'country');
+        return $this->village->name . ', ' . $this->city->name . ', ' . $this->state->name . ', ' . $this->country->name . '.';
+    }
 }

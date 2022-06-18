@@ -159,8 +159,6 @@ class DonationController extends Controller
      */
     public function downloadInvoice(Request $request, Donation $donation)
     {
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadView('donations.invoice');
-        return $pdf->stream();
+        return view('invoice.donations-invoice', compact('donation'));
     }
 }

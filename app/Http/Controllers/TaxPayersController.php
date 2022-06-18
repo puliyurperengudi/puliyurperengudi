@@ -138,9 +138,7 @@ class TaxPayersController extends Controller
      */
     public function downloadInvoice(Request $request, TaxPayers $taxPayers)
     {
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadView('app.all_tax_payers.invoice');
-        return $pdf->stream();
+        return view('invoice.tax-payers-invoice', compact('taxPayers'));
     }
 
     /**
