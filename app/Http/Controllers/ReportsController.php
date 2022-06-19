@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\DonationReportDatatable;
 use App\DataTables\PayTaxReportDatatable;
+use App\Models\Country;
 use App\Models\TaxList;
 use App\Models\TaxPayers;
 use App\Models\TempleUser;
@@ -15,14 +16,16 @@ class ReportsController extends Controller
     {
         $templeUsers = TempleUser::all();
         $taxLists = TaxList::all();
-        return $donationReportDatatable->render('app.reports.donation', compact('taxLists', 'templeUsers'));
+        $countries = Country::pluck('name', 'id');
+        return $donationReportDatatable->render('app.reports.donation', compact('taxLists', 'templeUsers', 'countries'));
     }
 
     public function getPayTaxReport(PayTaxReportDatatable $payTaxReportDatatable)
     {
         $templeUsers = TempleUser::all();
         $taxLists = TaxList::all();
-        return $payTaxReportDatatable->render('app.reports.pay_tax', compact('taxLists', 'templeUsers'));
+        $countries = Country::pluck('name', 'id');
+        return $payTaxReportDatatable->render('app.reports.pay_tax', compact('taxLists', 'templeUsers', 'countries'));
     }
 
     public function getPayTaxReportDetails(Request $request, $userId, $payTaxId)

@@ -60,7 +60,25 @@ class DonationReportDatatable extends DataTable
         $toDate = request()->get('to_date');
         $templeUserId = request()->get('temple_user_id');
         $taxListId = request()->get('tax_list_id');
+        $countryId = request()->get('country_id');
+        $stateId = request()->get('state_id');
+        $cityId = request()->get('city_id');
+        $villageId = request()->get('village_id');
         $query = Donation::with('taxList', 'templeUser', 'kootam', 'caste')
+            ->whereHas('templeUser', function ($query) use ($villageId, $cityId, $stateId, $countryId) {
+                $query->when(($countryId && $countryId != ''), function ($query) use ($countryId) {
+                        return $query->where('country_id', $countryId);
+                    })
+                    ->when(($stateId && $stateId != ''), function ($query) use ($stateId) {
+                        return $query->where('state_id', $stateId);
+                    })
+                    ->when(($cityId && $cityId != ''), function ($query) use ($cityId) {
+                        return $query->where('city_id', $cityId);
+                    })
+                    ->when(($villageId && $villageId != ''), function ($query) use ($villageId) {
+                        return $query->where('village_id', $villageId);
+                    });
+            })
             ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
                 return $query->where('created_at', '>', $fromDate);
             })
