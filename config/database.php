@@ -46,9 +46,9 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'aa1puiocodo1j1g.coth2idlf3jp.ap-south-1.rds.amazonaws.com'),
+            'host' => env('DB_HOST', 'puliyur-temple.coth2idlf3jp.ap-south-1.rds.amazonaws.com'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'puliyurtemple'),
+            'database' => env('DB_DATABASE', 'puliurtempleprod'),
             'username' => env('DB_USERNAME', 'puliyuruser'),
             'password' => env('DB_PASSWORD', 'puliyurpass'),
             'unix_socket' => env('DB_SOCKET', ''),
