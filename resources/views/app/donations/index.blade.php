@@ -154,7 +154,7 @@
                                         </button>
                                     </form>
                                     @endcan
-                                    <a onclick="openLinkInCurrentTab('{{ route('donations.invoice-download', $donation) }}')">
+                                    <a onclick="openLinkInNewTab('{{ route('donations.invoice-download', $donation) }}')">
                                         <button type="button" class="btn btn-light">
                                             <i class="icon ion-md-download"></i>
                                         </button>

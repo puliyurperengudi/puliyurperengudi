@@ -16,8 +16,9 @@
         <x-inputs.select name="temple_user_id" label="Temple User" required id="temple_user_id" class="select2">
             @php $selected = old('temple_user_id', ($editing ? $taxPayers->temple_user_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Temple User</option>
-            @foreach($templeUsers as $id => $templeUser)
-            <option value="{{ $templeUser->first()->id }}" {{ $selected == $templeUser->first()->id ? 'selected' : '' }} >{{ $templeUser->first()->name }}</option>
+            @foreach($templeUsers as $id => $templeUserArray)
+                @php $templeUser = $templeUserArray->first() @endphp
+                <option value="{{ $templeUser->id }}" {{ $selected == $templeUser->id ? 'selected' : '' }} >{{ $templeUser->userId() . '   ||   ' . $templeUser->name . '   ||   ' . $templeUser->father_name . '   ||   ' . $templeUser->mobile_number . '   ||   ' . $templeUser->address }}</option>
             @endforeach
         </x-inputs.select>
     </x-inputs.group>

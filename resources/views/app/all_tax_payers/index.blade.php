@@ -134,7 +134,7 @@
                                         </button>
                                     </form>
                                     @endcan
-                                    <a href="{{ route('all-tax-payers.invoice-download', $taxPayers) }}">
+                                    <a onclick="openLinkInNewTab('{{ route('all-tax-payers.invoice-download', $taxPayers) }}')">
                                         <button type="button" class="btn btn-light">
                                             <i class="icon ion-md-download"></i>
                                         </button>
