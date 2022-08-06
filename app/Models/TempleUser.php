@@ -13,6 +13,7 @@ class TempleUser extends Model
 
     protected $fillable = [
         'name',
+        'user_id_prefix',
         'father_name',
         'address',
         'mobile_number',
@@ -28,6 +29,21 @@ class TempleUser extends Model
     protected $searchableFields = ['*'];
 
     protected $table = 'temple_users';
+
+    const NORMAL_USER_ID_PREFIX = 'PP';
+    const TEMPORARY_USER_ID_PREFIX = 'DD';
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($templeUser) {
+            info($templeUser->user_id_prefix);
+            if (!$templeUser->user_id_prefix) {
+                $templeUser->user_id_prefix = self::NORMAL_USER_ID_PREFIX;
+            }
+        });
+    }
 
     public function allTaxPayers()
     {
@@ -71,7 +87,7 @@ class TempleUser extends Model
 
     public function userId()
     {
-        return TaxPayers::USER_ID_PREFIX . $this->id;
+        return $this->user_id_prefix . $this->id;
     }
 
     public function getAddress()

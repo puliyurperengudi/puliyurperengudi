@@ -65,6 +65,7 @@ class DonationController extends Controller
         if ($request->get('user_type') == 'new-user') {
             $templeUser = TempleUser::create([
                 'name' => $request->name,
+                'user_id_prefix' => TempleUser::TEMPORARY_USER_ID_PREFIX,
                 'father_name' => $request->father_name,
                 'address' => $request->address,
                 'mobile_number' => $request->mobile_number,

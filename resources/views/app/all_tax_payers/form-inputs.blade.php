@@ -92,7 +92,7 @@
 
     $('#temple_user_id').change(function() {
         var selectedUser = templeUsers[$(this).val()][0];
-        $("#user-id").html('{{ \App\Models\TaxPayers::USER_ID_PREFIX }}' + selectedUser.id);
+        $("#user-id").html(selectedUser.user_id_prefix + selectedUser.id);
         $("#user-name").html(selectedUser.name);
         $("#father-name").html(selectedUser.father_name);
         $("#mobile-number").html(selectedUser.mobile_number);

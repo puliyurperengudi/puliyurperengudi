@@ -35,7 +35,7 @@ class DonationStoreRequest extends FormRequest
         if ($this->request->get('user_type') == 'new-user') {
             $rules = array_merge($rules, [
                 'name' => ['required', 'max:255', 'string'],
-                'mobile_number' => ['required', 'max:255', 'string'],
+                'mobile_number' => ['required', 'max:255', 'string', 'unique:temple_users,mobile_number'],
                 'father_name' => ['required', 'max:255', 'string'],
                 'address' => ['required', 'max:255', 'string'],
                 'country_id' => ['required', 'exists:countries,id'],
@@ -49,5 +49,17 @@ class DonationStoreRequest extends FormRequest
             ]);
         }
         return $rules;
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'mobile_number.unique' => 'The mobile number has already been taken, Kindly select "Existing User" & select that already available temple user.',
+        ];
     }
 }
