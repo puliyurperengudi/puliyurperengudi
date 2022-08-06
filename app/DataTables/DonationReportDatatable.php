@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Donation;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -80,10 +81,10 @@ class DonationReportDatatable extends DataTable
                     });
             })
             ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
-                return $query->where('created_at', '>', $fromDate);
+                return $query->where('created_at', '>=', Carbon::parse($fromDate)->startOfDay());
             })
             ->when(($toDate && $toDate != ''), function ($query) use ($toDate) {
-                return $query->where('created_at', '<', $toDate);
+                return $query->where('created_at', '<=', Carbon::parse($toDate)->endOfDay());
             })
             ->when(($templeUserId && $templeUserId != ''), function ($query) use ($templeUserId) {
                 return $query->where('temple_user_id', $templeUserId);

@@ -80,8 +80,7 @@
                                 {{ optional($expense->taxList)->name ?? '-' }}
                             </td>
                             <td>
-                                {{ optional($expense->expenseType)->name ?? '-'
-                                }}
+                                {{ optional($expense->expenseType)->name ?? '-' }}
                             </td>
                             <td>{{ $expense->name ?? '-' }}</td>
                             <td>{{ $expense->expense_date->format(DATE_FORMAT) ?? '-' }}</td>
