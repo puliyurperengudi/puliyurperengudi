@@ -69,6 +69,7 @@
 
     <script>
         $(document).ready(function() {
+            $('#dataTableBuilder_filter').html('<br>');
             loadDataTable();
         });
 

@@ -99,6 +99,7 @@
 
     <script>
         $(document).ready(function() {
+            $('#dataTableBuilder_filter').html('<br>');
             setTimeout(
                 function() {
                     $('#state-select').hide();

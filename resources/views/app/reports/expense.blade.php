@@ -68,6 +68,9 @@
     {!! $dataTable->scripts() !!}
 
     <script>
+        $(document).ready(function() {
+            $('#dataTableBuilder_filter').html('<br>');
+        });
         function loadDataTable() {
             $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
                 data.from_date = $('#from_date').val();
