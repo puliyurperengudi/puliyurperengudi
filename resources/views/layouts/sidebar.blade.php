@@ -154,7 +154,7 @@
                 </li>
                 @endif
 
-                @if(auth()->user()->hasPermissionTo('donations report') || auth()->user()->hasPermissionTo('paytax report') || auth()->user()->hasPermissionTo('expenses report') || auth()->user()->hasPermissionTo('temple users report'))
+                @if(auth()->user()->hasPermissionTo('donations report') || auth()->user()->hasPermissionTo('paytax report') || auth()->user()->hasPermissionTo('expenses report') || auth()->user()->hasPermissionTo('temple users report') || auth()->user()->hasPermissionTo('ledger report'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon icon ion-md-radio-button-off"></i>
