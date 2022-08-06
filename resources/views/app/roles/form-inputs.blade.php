@@ -23,6 +23,11 @@
                 :add-hidden-value="false"
             ></x-inputs.checkbox>
         </div>
+
+        @if(isset($permissions[$loop->iteration]) && (getLastWordOfAString($permission->name) != getLastWordOfAString($permissions[$loop->iteration]->name)))
+            <hr>
+        @endif
+
         @endforeach
     </div>
 </div>

@@ -34,3 +34,9 @@ function getIndianCurrency(float $number)
     $paise = ($decimal > 0) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
     return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
 }
+
+function getLastWordOfAString($string) {
+    info($string);
+    $pieces = explode(' ', $string);
+    return array_pop($pieces);
+}
