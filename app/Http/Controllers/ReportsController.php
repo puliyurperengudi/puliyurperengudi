@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\DonationReportDatatable;
 use App\DataTables\ExpenseReportDatatable;
+use App\DataTables\LedgerReportDatatable;
 use App\DataTables\PayTaxReportDatatable;
 use App\DataTables\TempleUserReportDatatable;
 use App\Models\Caste;
@@ -52,5 +53,11 @@ class ReportsController extends Controller
         $kootams = Kootam::all();
         $countries = Country::pluck('name', 'id');
         return $templeUserReportDatatable->render('app.reports.temple_user', compact('castes', 'kootams', 'countries'));
+    }
+
+    public function getLedgerReport(LedgerReportDatatable $ledgerReportDatatable)
+    {
+        $taxLists = TaxList::all();
+        return $ledgerReportDatatable->render('app.reports.ledger', compact('taxLists'));
     }
 }

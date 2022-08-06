@@ -203,6 +203,16 @@
                                 </li>
                             </ul>
                         @endif
+                        @if(auth()->user()->hasPermissionTo('ledger report'))
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" onclick="openLinkInCurrentTab('{{ route('ledger.report') }}')">
+                                        <i class="nav-icon icon ion-md-arrow-round-back"></i>
+                                        <p>Ledger Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
                     </li>
                 @endif
                 @endauth

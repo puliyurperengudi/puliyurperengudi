@@ -1,6 +1,10 @@
 <?php
 
 define('DATE_FORMAT', 'd/m/Y');
+define('ALL_REPORTS', 'All Reports');
+define('DONATION_REPORT', 'Donation Report');
+define('PAY_TAX_REPORT', 'Pay Tax Report');
+define('EXPENSE_REPORT', 'Expense Report');
 
 function getIndianCurrency(float $number)
 {
