@@ -24,6 +24,11 @@ class NewPermissionSeeder extends Seeder
             ['name' => 'expenses report']
         );
 
+        Permission::updateOrCreate(
+            ['name' => 'temple users report'],
+            ['name' => 'temple users report']
+        );
+
         // Create admin role and assign all permissions
         $allPermissions = Permission::all();
         $adminRole = Role::where('name', 'super-admin')->first();

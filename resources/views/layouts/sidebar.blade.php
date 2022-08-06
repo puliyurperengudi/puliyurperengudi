@@ -154,7 +154,7 @@
                 </li>
                 @endif
 
-                @if(auth()->user()->hasPermissionTo('donations report') || auth()->user()->hasPermissionTo('paytax report') || auth()->user()->hasPermissionTo('expenses report'))
+                @if(auth()->user()->hasPermissionTo('donations report') || auth()->user()->hasPermissionTo('paytax report') || auth()->user()->hasPermissionTo('expenses report') || auth()->user()->hasPermissionTo('temple users report'))
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon icon ion-md-radio-button-off"></i>
@@ -189,6 +189,16 @@
                                     <a href="#" class="nav-link" onclick="openLinkInCurrentTab('{{ route('expense.report') }}')">
                                         <i class="nav-icon icon ion-md-arrow-round-back"></i>
                                         <p>Expense Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
+                        @if(auth()->user()->hasPermissionTo('temple users report'))
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" onclick="openLinkInCurrentTab('{{ route('temple-user.report') }}')">
+                                        <i class="nav-icon icon ion-md-arrow-round-back"></i>
+                                        <p>Temple User Report</p>
                                     </a>
                                 </li>
                             </ul>

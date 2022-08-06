@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\DataTables\DonationReportDatatable;
 use App\DataTables\ExpenseReportDatatable;
 use App\DataTables\PayTaxReportDatatable;
+use App\DataTables\TempleUserReportDatatable;
+use App\Models\Caste;
 use App\Models\Country;
 use App\Models\ExpenseType;
+use App\Models\Kootam;
 use App\Models\TaxList;
 use App\Models\TaxPayers;
 use App\Models\TempleUser;
@@ -41,5 +44,13 @@ class ReportsController extends Controller
         $taxLists = TaxList::all();
         $expenseTypes = ExpenseType::all();
         return $expenseReportDatatable->render('app.reports.expense', compact('taxLists', 'expenseTypes'));
+    }
+
+    public function getTempleUserReport(TempleUserReportDatatable $templeUserReportDatatable)
+    {
+        $castes = Caste::all();
+        $kootams = Kootam::all();
+        $countries = Country::pluck('name', 'id');
+        return $templeUserReportDatatable->render('app.reports.temple_user', compact('castes', 'kootams', 'countries'));
     }
 }

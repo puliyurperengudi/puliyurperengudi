@@ -23,7 +23,7 @@ class TempleUserController extends Controller
 
         $search = $request->get('search', '');
 
-        $templeUsers = TempleUser::search($search)
+        $templeUsers = TempleUser::with('kootam', 'caste', 'village')->search($search)
             ->latest()
             ->paginate(5);
 
