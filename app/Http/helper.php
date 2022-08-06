@@ -36,7 +36,6 @@ function getIndianCurrency(float $number)
 }
 
 function getLastWordOfAString($string) {
-    info($string);
     $pieces = explode(' ', $string);
     return array_pop($pieces);
 }
