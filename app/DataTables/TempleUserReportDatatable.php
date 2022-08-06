@@ -69,12 +69,16 @@ class TempleUserReportDatatable extends DataTable
         $stateId = request()->get('state_id');
         $cityId = request()->get('city_id');
         $villageId = request()->get('village_id');
+        $TempleUserType = request()->get('temple_user_type');
         $query = TempleUser::with('kootam', 'caste', 'village')
             ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
                 return $query->where('created_at', '>=', Carbon::parse($fromDate)->startOfDay());
             })
             ->when(($toDate && $toDate != ''), function ($query) use ($toDate) {
                 return $query->where('created_at', '<=', Carbon::parse($toDate)->endOfDay());
+            })
+            ->when(($TempleUserType && $TempleUserType != TempleUser::ALL_USER_ID_PREFIX), function ($query) use ($TempleUserType) {
+                return $query->where('user_id_prefix', $TempleUserType);
             })
             ->when(($countryId && $countryId != ''), function ($query) use ($countryId) {
                 return $query->where('country_id', $countryId);

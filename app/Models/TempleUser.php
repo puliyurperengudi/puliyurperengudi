@@ -30,6 +30,7 @@ class TempleUser extends Model
 
     protected $table = 'temple_users';
 
+    const ALL_USER_ID_PREFIX = 'All Users';
     const NORMAL_USER_ID_PREFIX = 'PP';
     const TEMPORARY_USER_ID_PREFIX = 'DD';
 

@@ -28,6 +28,13 @@
                             ></x-inputs.date>
                         </x-inputs.group>
                         <x-inputs.group class="col-sm-4">
+                            <x-inputs.select name="temple_user_type" label="Temple User Type" class="select2">
+                                <option value="{{ \App\Models\TempleUser::ALL_USER_ID_PREFIX }}" selected>{{ \App\Models\TempleUser::ALL_USER_ID_PREFIX }}</option>
+                                <option value="{{ \App\Models\TempleUser::NORMAL_USER_ID_PREFIX }}">Registered Temple User</option>
+                                <option value="{{ \App\Models\TempleUser::TEMPORARY_USER_ID_PREFIX }}">Donation Only Temple User</option>
+                            </x-inputs.select>
+                        </x-inputs.group>
+                        <x-inputs.group class="col-sm-4">
                             <x-inputs.select name="caste_list" label="Caste" class="select2">
                                 <option disabled selected>Please select a Caste</option>
                                 @foreach($castes as $caste)
@@ -104,6 +111,7 @@
             $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
                 data.from_date = $('#from_date').val();
                 data.to_date = $('#to_date').val();
+                data.temple_user_type = $('#temple_user_type').val();
                 data.caste_id = $('#caste_list').val();
                 data.kootam_id = $('#kootam').val();
                 data.country_id = $('#country_id').val();
