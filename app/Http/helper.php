@@ -43,3 +43,7 @@ function getLastWordOfAString($string) {
     $pieces = explode(' ', $string);
     return array_pop($pieces);
 }
+
+function getNullOrValue($value) {
+    return ($value && $value != '' && $value != ' ') ? $value : null;
+}

@@ -69,13 +69,13 @@ class DonationController extends Controller
                 'father_name' => $request->father_name,
                 'address' => $request->address,
                 'mobile_number' => $request->mobile_number,
-                'kootam_id' => $request->kootam_id,
-                'caste_id' => $request->caste_id,
-                'vagera' => $request->vagera ?? null,
-                'country_id' => $request->country_id,
-                'state_id' => $request->state_id,
-                'city_id' => $request->city_id,
-                'village_id' => $request->village_id,
+                'kootam_id' => getNullOrValue($request->kootam_id),
+                'caste_id' => getNullOrValue($request->caste_id),
+                'vagera' => getNullOrValue($request->vagera),
+                'country_id' => getNullOrValue($request->country_id),
+                'state_id' => getNullOrValue($request->state_id),
+                'city_id' => getNullOrValue($request->city_id),
+                'village_id' => getNullOrValue($request->village_id),
             ]);
             $validated['temple_user_id'] = $templeUser->id;
         }

@@ -215,6 +215,9 @@
             $('#mobile-number-input').attr('required', false);
             $('#father-name-input').attr('required', false);
             $('#address-input').attr('required', false);
+
+            $('#caste_id').attr('required', true);
+            $('#kootam_id').attr('required', true);
         } else {
             $('#existing-user-div').hide();
             $('#new-user-div').show();
@@ -222,6 +225,9 @@
             $('#mobile-number-input').attr('required', true);
             $('#father-name-input').attr('required', true);
             $('#address-input').attr('required', true);
+
+            $('#caste_id').attr('required', false);
+            $('#kootam_id').attr('required', false);
         }
     }
 
