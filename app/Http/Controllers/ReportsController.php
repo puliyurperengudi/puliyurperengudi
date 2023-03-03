@@ -6,6 +6,7 @@ use App\DataTables\DonationReportDatatable;
 use App\DataTables\ExpenseReportDatatable;
 use App\DataTables\LedgerReportDatatable;
 use App\DataTables\PayTaxReportDatatable;
+use App\DataTables\PendingPayTaxReportDatatable;
 use App\DataTables\TempleUserReportDatatable;
 use App\Models\Caste;
 use App\Models\Country;
@@ -59,5 +60,13 @@ class ReportsController extends Controller
     {
         $taxLists = TaxList::all();
         return $ledgerReportDatatable->render('app.reports.ledger', compact('taxLists'));
+    }
+
+    public function getPendingPayTaxReport(PendingPayTaxReportDatatable $pendingPayTaxReportDatatable)
+    {
+        $templeUsers = TempleUser::all();
+        $taxLists = TaxList::all();
+        $countries = Country::pluck('name', 'id');
+        return $pendingPayTaxReportDatatable->render('app.reports.pending_pay_tax', compact('taxLists', 'templeUsers', 'countries'));
     }
 }

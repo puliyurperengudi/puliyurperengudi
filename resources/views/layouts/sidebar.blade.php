@@ -183,6 +183,16 @@
                                 </li>
                             </ul>
                         @endif
+                        @if(auth()->user()->hasPermissionTo('paytax report'))
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" onclick="openLinkInCurrentTab('{{ route('pending-pay-tax.report') }}')">
+                                        <i class="nav-icon icon ion-md-arrow-round-back"></i>
+                                        <p>Pending Pay Tax Report</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        @endif
                         @if(auth()->user()->hasPermissionTo('expenses report'))
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
