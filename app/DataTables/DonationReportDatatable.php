@@ -32,6 +32,9 @@ class DonationReportDatatable extends DataTable
             ->addColumn('name', function ($donation) {
                 return $donation->templeUser->name;
             })
+            ->addColumn('user_id', function ($donation) {
+                return $donation->templeUser->userId();
+            })
             ->addColumn('mobile_number', function ($donation) {
                 return $donation->templeUser->mobile_number;
             })
@@ -126,6 +129,7 @@ class DonationReportDatatable extends DataTable
         return [
             Column::make('tax_list'),
             Column::make('name'),
+            Column::make('user_id'),
             Column::make('mobile_number'),
             Column::make('father_name'),
             Column::make('address'),

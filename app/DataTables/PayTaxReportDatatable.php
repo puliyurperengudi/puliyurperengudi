@@ -27,6 +27,9 @@ class PayTaxReportDatatable extends DataTable
             ->addColumn('temple_user', function ($taxPayer) {
                 return $taxPayer->templeUser->name;
             })
+            ->addColumn('user_id', function ($taxPayer) {
+                return $taxPayer->templeUser->userId();
+            })
             ->addColumn('tax_list', function ($taxPayer) {
                 return $taxPayer->taxList->name;
             })
@@ -140,6 +143,7 @@ class PayTaxReportDatatable extends DataTable
     {
         return [
             Column::make('temple_user'),
+            Column::make('user_id'),
             Column::make('village_name'),
             Column::make('city_name'),
             Column::make('state_name'),

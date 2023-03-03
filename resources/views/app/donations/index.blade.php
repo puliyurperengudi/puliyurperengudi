@@ -94,8 +94,8 @@
                             <td>
                                 {{ optional($donation->taxList)->name ?? '-' }}
                             </td>
-                            <td>{{ optional($donation->templeUser)->userId() ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->name ?? '-' }}</td>
+                            <td>{{ optional($donation->templeUser)->userId() ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->mobile_number ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->father_name ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->address ?? '-' }}</td>
