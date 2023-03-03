@@ -58,8 +58,10 @@ class TaxPayers extends Model
                         }
                         if ($updatedSearch != '' || $updatedSearch != ' ') {
                             $query->orWhere(function ($where) use ($updatedSearch, $firstTwoChar, $field) {
-                                $where->where('user_id_prefix', strtoupper($firstTwoChar))
-                                    ->where($field, $updatedSearch);
+                                $where->where($field, $updatedSearch);
+
+//                                $where->where('user_id_prefix', strtoupper($firstTwoChar))
+//                                    ->where($field, $updatedSearch);
                             });
                         }
                     } else {
