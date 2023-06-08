@@ -7,39 +7,25 @@
             <div class="card">
                 <div class="card-header">
                     <span>
-                        {{ __('Donation Report') }}
+                        {{ __('Pending Pay Tax Report') }}
                     </span>
                 </div>
 
                 <div class="card-body">
                     <div class="row">
                         <x-inputs.group class="col-sm-4">
-                            <x-inputs.date
-                                name="from_date"
-                                label="From Date"
-                                required
-                            ></x-inputs.date>
-                        </x-inputs.group>
-                        <x-inputs.group class="col-sm-4">
-                            <x-inputs.date
-                                name="to_date"
-                                label="To Date"
-                                required
-                            ></x-inputs.date>
+                            <x-inputs.select name="tax_list" label="Tax List" class="select2">
+                                <option disabled selected>Please select a Tax List</option>
+                                @foreach($taxLists as $taxList)
+                                    <option value="{{ $taxList->id }}">{{ $taxList->name }}</option>
+                                @endforeach
+                            </x-inputs.select>
                         </x-inputs.group>
                         <x-inputs.group class="col-sm-4">
                             <x-inputs.select name="temple_user" label="Temple User" class="select2">
                                 <option disabled selected>Please select a User</option>
                                 @foreach($templeUsers as $templeUser)
                                     <option value="{{ $templeUser->id }}">{{ $templeUser->name }}</option>
-                                @endforeach
-                            </x-inputs.select>
-                        </x-inputs.group>
-                        <x-inputs.group class="col-sm-4">
-                            <x-inputs.select name="tax_list" label="Tax List" class="select2">
-                                <option disabled selected>Please select a Tax List</option>
-                                @foreach($taxLists as $taxList)
-                                    <option value="{{ $taxList->id }}">{{ $taxList->name }}</option>
                                 @endforeach
                             </x-inputs.select>
                         </x-inputs.group>
@@ -103,8 +89,6 @@
 
         function loadDataTable() {
             $('#dataTableBuilder').on('preXhr.dt', function ( e, settings, data ) {
-                data.from_date = $('#from_date').val();
-                data.to_date = $('#to_date').val();
                 data.temple_user_id = $('#temple_user').val();
                 data.tax_list_id = $('#tax_list').val();
                 data.country_id = $('#country_id').val();

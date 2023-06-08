@@ -2,16 +2,13 @@
 
 namespace App\DataTables;
 
-use App\Models\Donation;
-use Carbon\Carbon;
+use App\Models\TaxPayers;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class DonationReportDatatable extends DataTable
+class PendingPayTaxReportDatatable extends DataTable
 {
     /**
      * Display ajax response.
@@ -21,34 +18,38 @@ class DonationReportDatatable extends DataTable
      */
     public function ajax()
     {
+        if (!$this->request()->get('tax_list_id')) {
+            return datatables()->collection(collect([]))->make(true);
+        }
+
         return datatables()
             ->eloquent($this->query())
-            ->addColumn('paid_at', function ($donation) {
-                return $donation->created_at->format(DATE_FORMAT);
+            ->addColumn('temple_user', function ($taxPayer) {
+                return $taxPayer->templeUser->name;
             })
-            ->addColumn('tax_list', function ($donation) {
-                return $donation->taxList->name;
+            ->addColumn('user_id', function ($taxPayer) {
+                return $taxPayer->templeUser->userId();
             })
-            ->addColumn('name', function ($donation) {
-                return $donation->templeUser->name;
+            ->addColumn('tax_list', function ($taxPayer) {
+                return $taxPayer->taxList->name;
             })
-            ->addColumn('user_id', function ($donation) {
-                return $donation->templeUser->userId();
+            ->addColumn('country_name', function ($taxPayer) {
+                return $taxPayer->templeUser->country->name ?? '-';
             })
-            ->addColumn('mobile_number', function ($donation) {
-                return $donation->templeUser->mobile_number;
+            ->addColumn('state_name', function ($taxPayer) {
+                return $taxPayer->templeUser->state->name ?? '-';
             })
-            ->addColumn('father_name', function ($donation) {
-                return $donation->templeUser->father_name;
+            ->addColumn('city_name', function ($taxPayer) {
+                return $taxPayer->templeUser->city->name ?? '-';
             })
-            ->addColumn('address', function ($donation) {
-                return $donation->templeUser->address;
+            ->addColumn('village_name', function ($taxPayer) {
+                return $taxPayer->templeUser->village->name ?? '-';
             })
-            ->addColumn('kootam', function ($donation) {
-                return $donation->kootam->name;
+            ->addColumn('paid_amount', function ($taxPayer) {
+                return $taxPayer->total_paid_amount;
             })
-            ->addColumn('caste', function ($donation) {
-                return $donation->caste->name;
+            ->addColumn('pending_amount', function ($taxPayer) {
+                return $taxPayer->taxList->amount - $taxPayer->total_paid_amount;
             })
             ->make(true);
     }
@@ -60,15 +61,13 @@ class DonationReportDatatable extends DataTable
      */
     public function query()
     {
-        $fromDate = request()->get('from_date');
-        $toDate = request()->get('to_date');
         $templeUserId = request()->get('temple_user_id');
         $taxListId = request()->get('tax_list_id');
         $countryId = request()->get('country_id');
         $stateId = request()->get('state_id');
         $cityId = request()->get('city_id');
         $villageId = request()->get('village_id');
-        $query = Donation::with('taxList', 'templeUser', 'kootam', 'caste')
+        $query = TaxPayers::with('taxList', 'templeUser', 'templeUser.country', 'templeUser.state', 'templeUser.city', 'templeUser.village')
             ->whereHas('templeUser', function ($query) use ($villageId, $cityId, $stateId, $countryId) {
                 $query->when(($countryId && $countryId != ''), function ($query) use ($countryId) {
                         return $query->where('country_id', $countryId);
@@ -83,18 +82,16 @@ class DonationReportDatatable extends DataTable
                         return $query->where('village_id', $villageId);
                     });
             })
-            ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
-                return $query->where('created_at', '>=', Carbon::parse($fromDate)->startOfDay());
-            })
-            ->when(($toDate && $toDate != ''), function ($query) use ($toDate) {
-                return $query->where('created_at', '<=', Carbon::parse($toDate)->endOfDay());
-            })
             ->when(($templeUserId && $templeUserId != ''), function ($query) use ($templeUserId) {
                 return $query->where('temple_user_id', $templeUserId);
             })
             ->when(($taxListId && $taxListId != ''), function ($query) use ($taxListId) {
                 return $query->where('tax_list_id', $taxListId);
-            });
+            })
+            ->groupBy('temple_user_id', 'tax_list_id')
+            ->selectRaw(
+        'temple_user_id, tax_list_id, SUM(paid_amount) as total_paid_amount'
+        );
         return $this->applyScopes($query);
     }
 
@@ -127,18 +124,15 @@ class DonationReportDatatable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('tax_list'),
-            Column::make('name'),
+            Column::make('temple_user'),
             Column::make('user_id'),
-            Column::make('mobile_number'),
-            Column::make('father_name'),
-            Column::make('address'),
-            Column::make('receipt_no'),
-            Column::make('last_paid_amount'),
-            Column::make('kootam'),
-            Column::make('vagera'),
-            Column::make('caste'),
-            Column::make('paid_at'),
+            Column::make('village_name'),
+            Column::make('city_name'),
+            Column::make('state_name'),
+            Column::make('country_name'),
+            Column::make('tax_list'),
+            Column::make('paid_amount'),
+            Column::make('pending_amount'),
         ];
     }
 
@@ -149,6 +143,6 @@ class DonationReportDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'DonationReport_' . date('YmdHis');
+        return 'PendingPayTaxReport_' . date('YmdHis');
     }
 }

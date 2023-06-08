@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Donation;
 use App\Models\TaxPayers;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -26,6 +27,9 @@ class PayTaxReportDatatable extends DataTable
             ->addColumn('temple_user', function ($taxPayer) {
                 return $taxPayer->templeUser->name;
             })
+            ->addColumn('user_id', function ($taxPayer) {
+                return $taxPayer->templeUser->userId();
+            })
             ->addColumn('tax_list', function ($taxPayer) {
                 return $taxPayer->taxList->name;
             })
@@ -42,18 +46,17 @@ class PayTaxReportDatatable extends DataTable
                 return $taxPayer->templeUser->village->name ?? '-';
             })
             ->addColumn('paid_amount', function ($taxPayer) {
-                return $taxPayer->total_paid_amount;
-//                return $taxPayer->total_paid_amount . '(' . $taxPayer->paid_amount_details .')';
+                return $taxPayer->total_paid_amount . '(' . $taxPayer->paid_amount_details .')';
             })
-//            ->addColumn('paid_date', function ($taxPayer) {
-//                return $taxPayer->paid_date_details;
-//            })
-//            ->addColumn('paid_to', function ($taxPayer) {
-//                return $taxPayer->paid_to_details;
-//            })
-//            ->addColumn('receipt_no', function ($taxPayer) {
-//                return $taxPayer->receipt_no_details;
-//            })
+            ->addColumn('paid_date', function ($taxPayer) {
+                return $taxPayer->paid_date_details;
+            })
+            ->addColumn('paid_to', function ($taxPayer) {
+                return $taxPayer->paid_to_details;
+            })
+            ->addColumn('receipt_no', function ($taxPayer) {
+                return $taxPayer->receipt_no_details;
+            })
             ->addColumn('action', function ($taxPayer) {
                 return '<a href="#" onclick="openLinkInCurrentTab(\''. route('pay-tax-details.report', [$taxPayer->temple_user_id, $taxPayer->tax_list_id]) .'\')"><button type="button" class="btn btn-light"><i class="icon ion-md-eye"></i></button></a>';
             })
@@ -91,10 +94,10 @@ class PayTaxReportDatatable extends DataTable
                     });
             })
             ->when(($fromDate && $fromDate != ''), function ($query) use ($fromDate) {
-                return $query->where('created_at', '>', $fromDate);
+                return $query->where('created_at', '>=', Carbon::parse($fromDate)->startOfDay());
             })
             ->when(($toDate && $toDate != ''), function ($query) use ($toDate) {
-                return $query->where('created_at', '<', $toDate);
+                return $query->where('created_at', '<=', Carbon::parse($toDate)->endOfDay());
             })
             ->when(($templeUserId && $templeUserId != ''), function ($query) use ($templeUserId) {
                 return $query->where('temple_user_id', $templeUserId);
@@ -104,11 +107,9 @@ class PayTaxReportDatatable extends DataTable
             })
             ->groupBy('temple_user_id', 'tax_list_id')
             ->selectRaw(
-                'temple_user_id, tax_list_id, SUM(paid_amount) as total_paid_amount');
-//        ->selectRaw(
-//        'temple_user_id, tax_list_id, SUM(paid_amount) as total_paid_amount, GROUP_CONCAT(paid_amount) as paid_amount_details,
-//                GROUP_CONCAT(paid_date) as paid_date_details, GROUP_CONCAT(paid_to) as paid_to_details, GROUP_CONCAT(receipt_no) as receipt_no_details'
-//    );
+        'temple_user_id, tax_list_id, SUM(paid_amount) as total_paid_amount, GROUP_CONCAT(paid_amount) as paid_amount_details,
+                GROUP_CONCAT(paid_date) as paid_date_details, GROUP_CONCAT(paid_to) as paid_to_details, GROUP_CONCAT(receipt_no) as receipt_no_details'
+        );
         return $this->applyScopes($query);
     }
 
@@ -142,15 +143,16 @@ class PayTaxReportDatatable extends DataTable
     {
         return [
             Column::make('temple_user'),
+            Column::make('user_id'),
             Column::make('village_name'),
             Column::make('city_name'),
             Column::make('state_name'),
             Column::make('country_name'),
             Column::make('tax_list'),
             Column::make('paid_amount'),
-//            Column::make('paid_date'),
-//            Column::make('paid_to'),
-//            Column::make('receipt_no'),
+            Column::make('paid_date'),
+            Column::make('paid_to'),
+            Column::make('receipt_no'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

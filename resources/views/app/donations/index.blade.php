@@ -94,8 +94,8 @@
                             <td>
                                 {{ optional($donation->taxList)->name ?? '-' }}
                             </td>
-                            <td>{{ optional($donation->templeUser)->userId() ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->name ?? '-' }}</td>
+                            <td>{{ optional($donation->templeUser)->userId() ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->mobile_number ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->father_name ?? '-' }}</td>
                             <td>{{ optional($donation->templeUser)->address ?? '-' }}</td>
@@ -154,7 +154,7 @@
                                         </button>
                                     </form>
                                     @endcan
-                                    <a onclick="openLinkInCurrentTab('{{ route('donations.invoice-download', $donation) }}')">
+                                    <a onclick="openLinkInNewTab('{{ route('donations.invoice-download', $donation) }}')">
                                         <button type="button" class="btn btn-light">
                                             <i class="icon ion-md-download"></i>
                                         </button>

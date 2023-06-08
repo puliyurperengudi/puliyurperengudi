@@ -11,6 +11,10 @@
                             <span>{{ $taxPayer->templeUser->name }}</span>
                         </div>
                         <div class="mb-4">
+                            <h5>User Id</h5>
+                            <span>{{ $taxPayer->templeUser->userId() }}</span>
+                        </div>
+                        <div class="mb-4">
                             <h5>Tax List</h5>
                             <span>{{ $taxPayer->taxList->name }}</span>
                         </div>

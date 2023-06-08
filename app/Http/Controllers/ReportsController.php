@@ -3,8 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\DonationReportDatatable;
+use App\DataTables\ExpenseReportDatatable;
+use App\DataTables\LedgerReportDatatable;
 use App\DataTables\PayTaxReportDatatable;
+use App\DataTables\PendingPayTaxReportDatatable;
+use App\DataTables\TempleUserReportDatatable;
+use App\Models\Caste;
 use App\Models\Country;
+use App\Models\ExpenseType;
+use App\Models\Kootam;
 use App\Models\TaxList;
 use App\Models\TaxPayers;
 use App\Models\TempleUser;
@@ -32,5 +39,34 @@ class ReportsController extends Controller
     {
         $taxPayerDetails = TaxPayers::with('taxList', 'templeUser')->where('temple_user_id', $userId)->where('tax_list_id', $payTaxId)->oldest('paid_date')->get();
         return view('app.reports.pay_tax_details', compact('taxPayerDetails'));
+    }
+
+    public function getExpenseReport(ExpenseReportDatatable $expenseReportDatatable)
+    {
+        $taxLists = TaxList::all();
+        $expenseTypes = ExpenseType::all();
+        return $expenseReportDatatable->render('app.reports.expense', compact('taxLists', 'expenseTypes'));
+    }
+
+    public function getTempleUserReport(TempleUserReportDatatable $templeUserReportDatatable)
+    {
+        $castes = Caste::all();
+        $kootams = Kootam::all();
+        $countries = Country::pluck('name', 'id');
+        return $templeUserReportDatatable->render('app.reports.temple_user', compact('castes', 'kootams', 'countries'));
+    }
+
+    public function getLedgerReport(LedgerReportDatatable $ledgerReportDatatable)
+    {
+        $taxLists = TaxList::all();
+        return $ledgerReportDatatable->render('app.reports.ledger', compact('taxLists'));
+    }
+
+    public function getPendingPayTaxReport(PendingPayTaxReportDatatable $pendingPayTaxReportDatatable)
+    {
+        $templeUsers = TempleUser::all();
+        $taxLists = TaxList::all();
+        $countries = Country::pluck('name', 'id');
+        return $pendingPayTaxReportDatatable->render('app.reports.pending_pay_tax', compact('taxLists', 'templeUsers', 'countries'));
     }
 }

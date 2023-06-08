@@ -97,4 +97,8 @@ Route::prefix('/')
         Route::get('donation-report', [ReportsController::class, 'getDonationReport'])->name('donation.report')->can('donations report');
         Route::get('pay-tax-report', [ReportsController::class, 'getPayTaxReport'])->name('pay-tax.report')->can('paytax report');
         Route::get('pay-tax-report-details/{userId}/{payTaxId}', [ReportsController::class, 'getPayTaxReportDetails'])->name('pay-tax-details.report')->can('paytax report');
+        Route::get('expenses-report', [ReportsController::class, 'getExpenseReport'])->name('expense.report')->can('expenses report');
+        Route::get('temple-users-report', [ReportsController::class, 'getTempleUserReport'])->name('temple-user.report')->can('temple users report');
+        Route::get('ledger-report', [ReportsController::class, 'getLedgerReport'])->name('ledger.report')->can('ledger report');
+        Route::get('pending-pay-tax-report', [ReportsController::class, 'getPendingPayTaxReport'])->name('pending-pay-tax.report')->can('paytax report');
     });

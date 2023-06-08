@@ -1,6 +1,10 @@
 <?php
 
 define('DATE_FORMAT', 'd/m/Y');
+define('ALL_REPORTS', 'All Reports');
+define('DONATION_REPORT', 'Donation Report');
+define('PAY_TAX_REPORT', 'Pay Tax Report');
+define('EXPENSE_REPORT', 'Expense Report');
 
 function getIndianCurrency(float $number)
 {
@@ -33,4 +37,13 @@ function getIndianCurrency(float $number)
     $Rupees = implode('', array_reverse($str));
     $paise = ($decimal > 0) ? "." . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise' : '';
     return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise;
+}
+
+function getLastWordOfAString($string) {
+    $pieces = explode(' ', $string);
+    return array_pop($pieces);
+}
+
+function getNullOrValue($value) {
+    return ($value && $value != '' && $value != ' ') ? $value : null;
 }

@@ -59,6 +59,9 @@
                                 @lang('crud.temple_users.inputs.address')
                             </th>
                             <th class="text-left">
+                                Village
+                            </th>
+                            <th class="text-left">
                                 @lang('crud.temple_users.inputs.mobile_number')
                             </th>
                             <th class="text-left">
@@ -82,6 +85,9 @@
                             <td>{{ $templeUser->name ?? '-' }}</td>
                             <td>{{ $templeUser->father_name ?? '-' }}</td>
                             <td>{{ $templeUser->address ?? '-' }}</td>
+                            <td>
+                                {{ optional($templeUser->village)->name ?? '-' }}
+                            </td>
                             <td>{{ $templeUser->mobile_number ?? '-' }}</td>
                             <td>
                                 {{ optional($templeUser->kootam)->name ?? '-' }}

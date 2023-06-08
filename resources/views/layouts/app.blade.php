@@ -131,6 +131,10 @@
             function openLinkInCurrentTab(link) {
                 location.href = link;
             }
+
+            function openLinkInNewTab(link) {
+                window.open(link, '_blank').focus();
+            }
         </script>
     </body>
 </html>

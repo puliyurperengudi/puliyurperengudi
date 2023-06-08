@@ -22,8 +22,6 @@ class TaxPayers extends Model
         'remarks'
     ];
 
-    const USER_ID_PREFIX = 'PP';
-
     protected $searchableFields = ['*'];
 
     protected $table = 'tax_payers';
@@ -55,12 +53,21 @@ class TaxPayers extends Model
                     $updatedSearch = $search;
                     if (strlen($search) > 2) {
                         $firstTwoChar = substr($search, 0, 2);
-                        if ($firstTwoChar == self::USER_ID_PREFIX || $firstTwoChar == strtolower(self::USER_ID_PREFIX)) {
+                        if ($firstTwoChar == TempleUser::NORMAL_USER_ID_PREFIX || $firstTwoChar == strtolower(TempleUser::NORMAL_USER_ID_PREFIX) || $firstTwoChar == TempleUser::TEMPORARY_USER_ID_PREFIX || $firstTwoChar == strtolower(TempleUser::TEMPORARY_USER_ID_PREFIX)) {
                             $updatedSearch = substr($search, 2);
                         }
-                    }
-                    if ($updatedSearch != '' || $updatedSearch != ' ') {
-                        $query->orWhere($field, $updatedSearch);
+                        if ($updatedSearch != '' || $updatedSearch != ' ') {
+                            $query->orWhere(function ($where) use ($updatedSearch, $firstTwoChar, $field) {
+                                $where->where($field, $updatedSearch);
+
+//                                $where->where('user_id_prefix', strtoupper($firstTwoChar))
+//                                    ->where($field, $updatedSearch);
+                            });
+                        }
+                    } else {
+                        if ($updatedSearch != '' || $updatedSearch != ' ') {
+                            $query->orWhere($field, $updatedSearch);
+                        }
                     }
                 } else {
                     $query->orWhere($field, 'like', "%{$search}%");
